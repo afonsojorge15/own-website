@@ -1,5 +1,7 @@
 import { PublicRounded } from "@mui/icons-material";
 import DoneIcon from "@mui/icons-material/Done";
+import Router, { useRouter } from "next/router";
+
 import {
   Box,
   Chip,
@@ -12,10 +14,20 @@ import {
   useTheme,
 } from "@mui/material";
 import type { NextPage } from "next";
+import { LinkableItem } from "../components/NavBar";
+import React, { FC } from "react";
 
 type ChipItem = {
   title: string;
 };
+
+const navBarItemList: LinkableItem[] = [
+  { href: "/", title: "Afonso Jorge" },
+  { href: "/work", title: "Work" },
+  { href: "/photography", title: "Photography" },
+  { href: "/films", title: "Films" },
+  { href: "/contact", title: "Contact" },
+];
 
 const ChipItemList: ChipItem[] = [
   { title: "Nodejs" },
@@ -25,7 +37,7 @@ const ChipItemList: ChipItem[] = [
   { title: "SQL" },
 ];
 
-const Home: NextPage = () => {
+const Home: NextPage = ({}) => {
   let theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -38,24 +50,31 @@ const Home: NextPage = () => {
       ml="auto"
       mr="auto"
       my={"50px"}
-      minHeight={"100vh"}
+      px={"20px"}
       sx={{ background: theme.palette.primary.main }}
     >
-      <Box
-        display={"flex"}
-        px={"30px"}
-        py={"50px"}
-        flexDirection="column"
-        justifyContent="center"
-        alignItems={"center"}
-        sx={{ background: theme.palette.primary.light }}
+      <Paper
+        sx={{
+          display: "block",
+          width: "100%",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          px: "30px",
+          py: "50px",
+          mb: "50px",
+          background: theme.palette.primary.light,
+          boxShadow: 2,
+        }}
       >
-        <Paper
+        <Box
           sx={{
             display: "flex",
+            width: "100%",
             flexDirection: "column",
             alignItems: "left",
             justifyContent: "center",
+            mb: "20px",
           }}
         >
           <Typography
@@ -63,8 +82,8 @@ const Home: NextPage = () => {
               color: (theme) => theme.palette.primary.dark,
               textAlign: "left",
             }}
-            variant="h4"
-            fontWeight={"600"}
+            variant="h6"
+            fontWeight={"500"}
           >
             Hi, I&apos;m
           </Typography>
@@ -72,7 +91,7 @@ const Home: NextPage = () => {
             sx={{
               color: (theme) => theme.palette.primary.dark,
             }}
-            variant="h1"
+            variant="h2"
             fontWeight={"600"}
           >
             Afonso Jorge
@@ -82,7 +101,7 @@ const Home: NextPage = () => {
               color: (theme) => theme.palette.primary.dark,
             }}
             variant="h6"
-            fontWeight={"600"}
+            fontWeight={"500"}
           >
             Software engineer and developer
           </Typography>
@@ -101,8 +120,126 @@ const Home: NextPage = () => {
               </Box>
             ))}
           </Stack>
-        </Paper>
-      </Box>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            flexDirection: "column",
+            alignItems: "left",
+            justifyContent: "center",
+            mb: "40px",
+          }}
+        >
+          <Typography
+            sx={{
+              color: (theme) => theme.palette.primary.dark,
+              textAlign: "center",
+              mb: 2,
+            }}
+            variant="h6"
+            fontWeight={"400"}
+          >
+            About:
+          </Typography>
+          <Typography
+            sx={{
+              color: (theme) => theme.palette.primary.dark,
+            }}
+            variant="body1"
+            fontWeight={"400"}
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+            commodo purus elementum, aliquet magna ac, commodo dolor. Nulla ut
+            sem elit. Etiam auctor elit a dapibus interdum. Pellentesque vitae
+            tristique erat. In condimentum ullamcorper orci, et finibus dolor
+            varius hendrerit. Donec sed vehicula mi. Ut bibendum dui ut
+            tincidunt molestie. Fusce et augue vel eros consequat molestie.
+            Suspendisse auctor enim non odio finibus, et tincidunt felis
+            vulputate.
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            flexDirection: "column",
+            alignItems: "left",
+            justifyContent: "center",
+          }}
+        >
+          <Typography
+            sx={{
+              color: (theme) => theme.palette.primary.dark,
+              textAlign: "center",
+              mb: 2,
+            }}
+            variant="h6"
+            fontWeight={"400"}
+          >
+            About this website:
+          </Typography>
+          <Typography
+            sx={{
+              color: (theme) => theme.palette.primary.dark,
+            }}
+            variant="body1"
+            fontWeight={"400"}
+          >
+            A modern, responsive, statically-generated react application built
+            with NextJS using typescript. Soon to implement GraphQL, Apollo and
+            Nexus, as well as other DevOps feautures.
+          </Typography>
+        </Box>
+      </Paper>
+      <Paper
+        sx={{
+          display: "block",
+          width: "100%",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          px: "30px",
+          py: "30px",
+          background: theme.palette.primary.light,
+          boxShadow: 2,
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            flexDirection: "column",
+            alignItems: "left",
+            justifyContent: "center",
+          }}
+        >
+          <Typography
+            sx={{
+              color: (theme) => theme.palette.primary.dark,
+            }}
+            variant="body1"
+            fontWeight={"400"}
+          >
+            *Currently not based in London but I&apos;m looking to change that.
+            If you&apos;re currently hiring Front-end/ Full-stack developers,
+            fell free to
+            <Typography
+              onClick={() => Router.push(navBarItemList[4].href)}
+              sx={{
+                textDecoration: "underline",
+
+                cursor: "pointer",
+              }}
+              variant="body1"
+              fontWeight={"400"}
+              fontStyle="italic"
+            >
+              contact me.
+            </Typography>
+          </Typography>
+        </Box>
+      </Paper>
     </Box>
   );
 };
