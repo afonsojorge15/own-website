@@ -31,31 +31,32 @@ const Home: NextPage = () => {
 
   return (
     <Box
-      display={"Block"}
       width="100%"
-      flex={1}
       justifyContent={"center"}
       alignItems={"center"}
+      maxWidth={"1100px"}
+      ml="auto"
+      mr="auto"
+      my={"50px"}
+      minHeight={"100vh"}
       sx={{ background: theme.palette.primary.main }}
     >
       <Box
         display={"flex"}
-        width="90%"
-        maxWidth={"1100px"}
         px={"30px"}
         py={"50px"}
         flexDirection="column"
         justifyContent="center"
-        minHeight={"100vh"}
+        alignItems={"center"}
+        sx={{ background: theme.palette.primary.light }}
       >
-        <Stack
-          display="flex"
+        <Paper
           sx={{
+            display: "flex",
             flexDirection: "column",
             alignItems: "left",
             justifyContent: "center",
           }}
-          spacing={3}
         >
           <Typography
             sx={{
@@ -85,22 +86,22 @@ const Home: NextPage = () => {
           >
             Software engineer and developer
           </Typography>
-        </Stack>
-        <Stack
-          justifyContent={"left"}
-          alignItems="left"
-          flexWrap={"wrap"}
-          direction={"row"}
-          textAlign={"left"}
-          display="flex"
-          mt={3}
-        >
-          {ChipItemList.map((item, key) => (
-            <Box key={key} pb={3} pr={2}>
-              <Chip key={key} icon={<DoneIcon />} label={item.title} />
-            </Box>
-          ))}
-        </Stack>
+          <Stack
+            justifyContent={"left"}
+            alignItems="left"
+            flexWrap={"wrap"}
+            direction={"row"}
+            textAlign={"left"}
+            display="flex"
+            mt={3}
+          >
+            {ChipItemList.map((item, key) => (
+              <Box key={key} pb={3} pr={2}>
+                <Chip key={key} icon={<DoneIcon />} label={item.title} />
+              </Box>
+            ))}
+          </Stack>
+        </Paper>
       </Box>
     </Box>
   );
