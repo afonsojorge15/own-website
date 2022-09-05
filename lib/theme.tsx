@@ -11,14 +11,14 @@ let theme = createTheme({
     mode: "light",
     primary: {
       main: "#f4f4f4",
-      dark: "#bebebe",
+      dark: "#000000",
       light: "#ffffff",
     },
     secondary: {
       main: "#e8e8f0",
     },
     background: {
-      default: "#F8F8FF",
+      default: "#f4f4f4",
     },
     info: {
       main: "#143DA6",
@@ -54,6 +54,14 @@ let theme = createTheme({
         root: {
           fontFamily: "Maven Pro",
           fontWeight: 500,
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          fontWeight: 500,
+          color: "#000000",
         },
       },
     },
