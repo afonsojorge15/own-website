@@ -29,7 +29,7 @@ const NavBarItemContainer: FC<NavBarItem & { isActive: boolean }> = ({
   isActive,
 }) => {
   return (
-    <Box m={1} pr={2}>
+    <Box m={0} mr={2}>
       <Typography
         onClick={() => Router.push(href)}
         sx={{
@@ -55,7 +55,6 @@ const NavBar: React.FC = () => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        position: "fixed",
         width: "100%",
         height: 50,
         background: theme.palette.secondary.main,
