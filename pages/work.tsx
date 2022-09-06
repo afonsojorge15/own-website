@@ -1,9 +1,10 @@
-import { PublicRounded } from "@mui/icons-material";
+import { Launch, PublicRounded } from "@mui/icons-material";
 import DoneIcon from "@mui/icons-material/Done";
 import {
   Box,
   Chip,
   Container,
+  Link,
   ListItem,
   Paper,
   Stack,
@@ -30,38 +31,73 @@ const Work: NextPage = () => {
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Container sx={{ maxWidth: "1100px", width: "100%", mx: "auto" }}>
-      <Box
-        display={"block"}
-        width="100%"
-        px={"30px"}
-        py={"50px"}
-        minHeight={"100vh"}
+    <Box
+      width="100%"
+      justifyContent={"center"}
+      alignItems={"center"}
+      maxWidth={"1100px"}
+      ml="auto"
+      mr="auto"
+      my={"50px"}
+      px={"20px"}
+      sx={{ background: theme.palette.primary.main }}
+    >
+      <Paper
+        sx={{
+          display: "block",
+          width: "100%",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          px: "30px",
+          py: "30px",
+          mb: "70px",
+          background: theme.palette.primary.light,
+          boxShadow: 2,
+        }}
       >
-        <Paper
+        <Box
           sx={{
             display: "flex",
-            flexWrap: "wrap",
-            mt: "50px",
-            py: "50px",
-            px: "50px",
             width: "100%",
+            flexDirection: "column",
+            alignItems: "left",
+            justifyContent: "center",
           }}
         >
-          <Box display={"flex"} justifyContent={"space-between"}>
-            <Typography
-              sx={{
-                color: (theme) => theme.palette.primary.dark,
-              }}
-              variant="h6"
-              fontWeight={"600"}
-            >
-              Walk4Money:
-            </Typography>
-          </Box>
-        </Paper>
-      </Box>
-    </Container>
+          <Stack
+            alignItems="center"
+            flexWrap={"wrap"}
+            direction={"row"}
+            textAlign={"left"}
+            display="flex"
+            mt={1}
+          >
+            <Link href={"https://walk4money.app"}>
+              <Typography
+                sx={{
+                  color: (theme) => theme.palette.primary.dark,
+                  mr: 1,
+                  pb: "6px",
+                }}
+                variant="h5"
+                fontWeight={"600"}
+              >
+                Walk4Money
+              </Typography>
+            </Link>
+            <Link href={"https://walk4money.app"}>
+              <Launch
+                sx={{
+                  alignSelf: "bottom",
+                  color: theme.palette.primary.dark,
+                }}
+              />
+            </Link>
+          </Stack>
+        </Box>
+      </Paper>
+    </Box>
   );
 };
 
