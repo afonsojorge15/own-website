@@ -10,12 +10,12 @@ import Router, { useRouter } from "next/router";
 import React, { FC } from "react";
 import Link from "next/link";
 
-type NavBarItem = {
+export type LinkableItem = {
   href: string;
   title: string;
 };
 
-const navBarItemList: NavBarItem[] = [
+const navBarItemList: LinkableItem[] = [
   { href: "/", title: "Afonso Jorge" },
   { href: "/work", title: "Work" },
   { href: "/photography", title: "Photography" },
@@ -23,13 +23,13 @@ const navBarItemList: NavBarItem[] = [
   { href: "/contact", title: "Contact" },
 ];
 
-const NavBarItemContainer: FC<NavBarItem & { isActive: boolean }> = ({
+const NavBarItemContainer: FC<LinkableItem & { isActive: boolean }> = ({
   href,
   title,
   isActive,
 }) => {
   return (
-    <Box m={0} mr={2}>
+    <Box m={0} mx={1}>
       <Typography
         onClick={() => Router.push(href)}
         sx={{
@@ -50,19 +50,19 @@ const NavBar: React.FC = () => {
 
   return (
     <Box
-      px={isSmall ? "1" : "2"}
+      px={isSmall ? 1 : 3}
       sx={{
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
         width: "100%",
         height: 50,
-        background: theme.palette.secondary.main,
-        boxShadow: 5,
+        background: theme.palette.primary.light,
+        boxShadow: 1,
         zIndex: 1,
       }}
     >
-      <Box display="flex" pl={2}>
+      <Box display="flex">
         {navBarItemList.map((item) => (
           <NavBarItemContainer
             key={item.title}
