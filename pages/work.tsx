@@ -1,5 +1,4 @@
 import { Launch, PublicRounded } from "@mui/icons-material";
-import DoneIcon from "@mui/icons-material/Done";
 import {
   Box,
   Chip,
@@ -8,23 +7,203 @@ import {
   ListItem,
   Paper,
   Stack,
+  StepConnector,
+  stepConnectorClasses,
+  StepLabel,
+  stepLabelClasses,
+  stepContentClasses,
+  StepContent,
+  styled,
   Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import type { NextPage } from "next";
+import * as React from "react";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import Button from "@mui/material/Button";
+import { StepIconProps } from "@mui/material/StepIcon";
 
-type ChipItem = {
-  title: string;
-};
-
-const ChipItemList: ChipItem[] = [
-  { title: "Nodejs" },
-  { title: "Nextjs" },
-  { title: "Typescript" },
-  { title: "React Native" },
-  { title: "SQL" },
+const steps = [
+  {
+    label: "Internship - Junior Software developer",
+    subtitle: "Summer 2019",
+    description: `            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+    commodo purus elementum, aliquet magna ac, commodo dolor. Nulla ut
+    sem elit. Etiam auctor elit a dapibus interdum. Pellentesque vitae
+    tristique erat. In condimentum ullamcorper orci, et finibus dolor
+    varius hendrerit. Donec sed vehicula mi. Ut bibendum dui ut
+    tincidunt molestie. Fusce et augue vel eros consequat molestie.
+    Suspendisse auctor enim non odio finibus, et tincidunt felis
+    vulputate.`,
+  },
+  {
+    label: "Full-time - Lead Software developer",
+    subtitle: "Nov 2021 - Present",
+    description: `            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+    commodo purus elementum, aliquet magna ac, commodo dolor. Nulla ut
+    sem elit. Etiam auctor elit a dapibus interdum. Pellentesque vitae
+    tristique erat. In condimentum ullamcorper orci, et finibus dolor
+    varius hendrerit. Donec sed vehicula mi. Ut bibendum dui ut
+    tincidunt molestie. Fusce et augue vel eros consequat molestie.
+    Suspendisse auctor enim non odio finibus, et tincidunt felis
+    vulputate.`,
+  },
+  {
+    label: "Full-Stack MVP development",
+    subtitle: "2019",
+    description: `Try out different ad text to see what brings in the most customers,
+              and learn how to enhance your ads using features like ad extensions.
+              If you run into any problems with your ads, find out how to tell if
+              they're running and how to resolve approval issues.`,
+  },
+  {
+    label: "Website development",
+    subtitle: "2019",
+    description: `Try out different ad text to see what brings in the most customers,
+              and learn how to enhance your ads using features like ad extensions.
+              If you run into any problems with your ads, find out how to tell if
+              they're running and how to resolve approval issues.`,
+  },
+  {
+    label: "Pitch deck",
+    subtitle: "2019",
+    description: `Try out different ad text to see what brings in the most customers,
+              and learn how to enhance your ads using features like ad extensions.
+              If you run into any problems with your ads, find out how to tell if
+              they're running and how to resolve approval issues.`,
+  },
 ];
+
+const ColorlibStepIconRoot = styled("div")<{
+  ownerState: { active?: boolean };
+}>(({ theme, ownerState }) => ({
+  backgroundColor:
+    theme.palette.mode === "dark" ? theme.palette.grey[700] : "#ccc",
+  zIndex: 1,
+  color: "#fff",
+  width: 50,
+  height: 50,
+  display: "flex",
+  borderRadius: "50%",
+  justifyContent: "center",
+  alignItems: "center",
+  ...(ownerState.active && {
+    backgroundImage:
+      "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
+    boxShadow: "0 4px 10px 0 rgba(0,0,0,.25)",
+  }),
+}));
+
+function ColorlibStepIcon(props: StepIconProps) {
+  const { active, className } = props;
+
+  const icons: { [index: string]: React.ReactElement } = {};
+
+  return (
+    <ColorlibStepIconRoot ownerState={{ active }} className={className}>
+      {icons[String(props.icon)]}
+    </ColorlibStepIconRoot>
+  );
+}
+
+const StepConnectorStlyed = styled(StepConnector)(({ theme }) => ({
+  [`&.${stepConnectorClasses.root}`]: {
+    marginLeft: "24px",
+  },
+}));
+
+const StepContentStyled = styled(StepContent)(({ theme }) => ({
+  [`&.${stepContentClasses.root}`]: {
+    marginLeft: "24px",
+  },
+}));
+
+const StepLabelStlyed = styled(StepLabel)(({ theme }) => ({
+  [`&.${stepLabelClasses.root}`]: {
+    fontWeight: 110,
+    lineHeight: 0,
+  },
+  [`&.${stepLabelClasses.labelContainer}`]: {
+    fontWeight: 100,
+    lineHeight: 1.1,
+  },
+  [`&.${stepLabelClasses.active}`]: {
+    [`&.${stepLabelClasses.label}`]: {
+      fontWeight: 100,
+      lineHeight: 1.1,
+    },
+  },
+  [`&.${stepLabelClasses.label}`]: {
+    [`&.${stepLabelClasses.active}`]: {
+      fontWeight: 100,
+      lineHeight: 1.1,
+    },
+  },
+  [`&.${stepLabelClasses.label}`]: {
+    fontWeight: 100,
+    lineHeight: 0.1,
+  },
+  // WWHY DOES IT NOT OVERRIDE IT
+}));
+
+const VerticalLinearStepper: React.FC = () => {
+  const [activeStep, setActiveStep] = React.useState(-1);
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
+
+  const handleStep = (step: number) => () => {
+    setActiveStep(step);
+  };
+
+  return (
+    <Box>
+      <Stepper
+        activeStep={activeStep}
+        orientation="vertical"
+        nonLinear
+        connector={<StepConnectorStlyed />}
+      >
+        {steps.map((step, index) => (
+          <Step key={step.label}>
+            <StepLabelStlyed
+              StepIconComponent={ColorlibStepIcon}
+              onClick={handleStep(index)}
+              sx={{ cursor: "pointer" }}
+              optional={
+                <Typography variant="caption">{step.subtitle}</Typography>
+              }
+            >
+              {step.label}
+            </StepLabelStlyed>
+            <StepContentStyled>
+              <Typography>{step.description}</Typography>
+            </StepContentStyled>
+          </Step>
+        ))}
+      </Stepper>
+      {activeStep === steps.length && (
+        <Paper square elevation={0} sx={{ p: 3 }}>
+          <Typography>All steps completed - you&apos;re finished</Typography>
+          <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+            Reset
+          </Button>
+        </Paper>
+      )}
+    </Box>
+  );
+};
 
 const Work: NextPage = () => {
   let theme = useTheme();
@@ -95,6 +274,7 @@ const Work: NextPage = () => {
               />
             </Link>
           </Stack>
+          <VerticalLinearStepper></VerticalLinearStepper>
         </Box>
       </Paper>
     </Box>
