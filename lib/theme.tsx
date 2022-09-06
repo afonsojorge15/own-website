@@ -65,6 +65,19 @@ let theme = createTheme({
         },
       },
     },
+    MuiStepLabel: {
+      styleOverrides: {
+        label: {
+          lineHeight: 1.2,
+          "&.Mui-active": {
+            fontWeight: 500,
+          },
+          "&:hover": {
+            fontWeight: 500,
+          },
+        },
+      },
+    },
   },
 });
 
