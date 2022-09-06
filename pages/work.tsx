@@ -90,8 +90,7 @@ const ColorlibStepIconRoot = styled("div")<{
   justifyContent: "center",
   alignItems: "center",
   ...(ownerState.active && {
-    backgroundImage:
-      "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
+    backgroundImage: "linear-gradient( 330deg, #143DA6 10%,  #53FFAA 100%)",
     boxShadow: "0 4px 10px 0 rgba(0,0,0,.25)",
   }),
 }));
@@ -107,46 +106,6 @@ function ColorlibStepIcon(props: StepIconProps) {
     </ColorlibStepIconRoot>
   );
 }
-
-const StepConnectorStlyed = styled(StepConnector)(({ theme }) => ({
-  [`&.${stepConnectorClasses.root}`]: {
-    marginLeft: "24px",
-  },
-}));
-
-const StepContentStyled = styled(StepContent)(({ theme }) => ({
-  [`&.${stepContentClasses.root}`]: {
-    marginLeft: "24px",
-  },
-}));
-
-const StepLabelStlyed = styled(StepLabel)(({ theme }) => ({
-  [`&.${stepLabelClasses.root}`]: {
-    fontWeight: 110,
-    lineHeight: 0,
-  },
-  [`&.${stepLabelClasses.labelContainer}`]: {
-    fontWeight: 100,
-    lineHeight: 1.1,
-  },
-  [`&.${stepLabelClasses.active}`]: {
-    [`&.${stepLabelClasses.label}`]: {
-      fontWeight: 100,
-      lineHeight: 1.1,
-    },
-  },
-  [`&.${stepLabelClasses.label}`]: {
-    [`&.${stepLabelClasses.active}`]: {
-      fontWeight: 100,
-      lineHeight: 1.1,
-    },
-  },
-  [`&.${stepLabelClasses.label}`]: {
-    fontWeight: 100,
-    lineHeight: 0.1,
-  },
-  // WWHY DOES IT NOT OVERRIDE IT
-}));
 
 const VerticalLinearStepper: React.FC = () => {
   const [activeStep, setActiveStep] = React.useState(-1);
@@ -173,11 +132,11 @@ const VerticalLinearStepper: React.FC = () => {
         activeStep={activeStep}
         orientation="vertical"
         nonLinear
-        connector={<StepConnectorStlyed />}
+        connector={<StepConnector />}
       >
         {steps.map((step, index) => (
           <Step key={step.label}>
-            <StepLabelStlyed
+            <StepLabel
               StepIconComponent={ColorlibStepIcon}
               onClick={handleStep(index)}
               sx={{ cursor: "pointer" }}
@@ -186,10 +145,10 @@ const VerticalLinearStepper: React.FC = () => {
               }
             >
               {step.label}
-            </StepLabelStlyed>
-            <StepContentStyled>
+            </StepLabel>
+            <StepContent>
               <Typography>{step.description}</Typography>
-            </StepContentStyled>
+            </StepContent>
           </Step>
         ))}
       </Stepper>

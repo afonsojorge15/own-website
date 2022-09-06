@@ -67,6 +67,9 @@ let theme = createTheme({
     },
     MuiStepLabel: {
       styleOverrides: {
+        labelContainer: {
+          paddingTop: 4,
+        },
         label: {
           lineHeight: 1.2,
           "&.Mui-active": {
@@ -75,6 +78,29 @@ let theme = createTheme({
           "&:hover": {
             fontWeight: 500,
           },
+        },
+      },
+    },
+    MuiStepContent: {
+      styleOverrides: {
+        root: {
+          borderWidth: 2,
+          borderRadius: 10,
+          marginLeft: "24px",
+
+          borderImage: "linear-gradient( 0deg, #143DA6 ,  #53FFAA 60% ) 0 100%",
+        },
+      },
+    },
+    MuiStepConnector: {
+      styleOverrides: {
+        lineVertical: {
+          borderWidth: 2,
+          marginLeft: "12px",
+          "&.Mui-active": {
+            borderColor: "rgb(20, 61, 166, 0.9)",
+          },
+          "&:hover": { borderColor: "#53FFAA", borderImage: "transparent" },
         },
       },
     },
