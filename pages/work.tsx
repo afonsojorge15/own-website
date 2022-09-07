@@ -93,6 +93,7 @@ const ColorlibStepIconRoot = styled("div")<{
     backgroundImage: "linear-gradient( 330deg, #143DA6 10%,  #53FFAA 100%)",
     boxShadow: "0 4px 10px 0 rgba(0,0,0,.25)",
   }),
+  "&:hover": { backgroundColor: theme.palette.primary.main },
 }));
 
 function ColorlibStepIcon(props: StepIconProps) {
