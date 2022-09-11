@@ -26,7 +26,7 @@ let theme = createTheme({
   },
   typography: {
     fontFamily:
-      '"Maven Pro", "Sabon", "Roboto", "Helvetica", "Arial", sans-serif',
+      '"Charter", "Maven Pro", "Sabon", "Roboto", "Helvetica", "Arial", "sans-serif"',
     h1: {
       fontWeight: 700,
     },
@@ -68,14 +68,17 @@ let theme = createTheme({
     MuiStepLabel: {
       styleOverrides: {
         labelContainer: {
-          paddingTop: 4,
+          display: "flex",
+          flexDirection: "column",
+          width: "inherit",
+          paddingLeft: 7,
+          paddingRight: 7,
+          borderRadius: 7,
+          paddingTop: 5,
         },
         label: {
           lineHeight: 1.2,
           "&.Mui-active": {
-            fontWeight: 500,
-          },
-          "&:hover": {
             fontWeight: 500,
           },
         },
@@ -87,7 +90,7 @@ let theme = createTheme({
           borderWidth: 2,
           borderRadius: 10,
           marginLeft: "24px",
-
+          borderLeftWidth: 2,
           borderImage: "linear-gradient( 0deg, #143DA6 ,  #53FFAA 60% ) 0 100%",
         },
       },
@@ -95,12 +98,7 @@ let theme = createTheme({
     MuiStepConnector: {
       styleOverrides: {
         lineVertical: {
-          borderWidth: 2,
-          marginLeft: "12px",
-          "&.Mui-active": {
-            borderColor: "rgb(20, 61, 166, 0.9)",
-          },
-          "&:hover": { borderColor: "#53FFAA", borderImage: "transparent" },
+          minHeight: 0,
         },
       },
     },

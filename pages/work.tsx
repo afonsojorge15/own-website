@@ -24,6 +24,7 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import Button from "@mui/material/Button";
 import { StepIconProps } from "@mui/material/StepIcon";
+import { StyledComponent } from "@emotion/styled";
 
 const steps = [
   {
@@ -37,6 +38,7 @@ const steps = [
     tincidunt molestie. Fusce et augue vel eros consequat molestie.
     Suspendisse auctor enim non odio finibus, et tincidunt felis
     vulputate.`,
+    small: false,
   },
   {
     label: "Full-time - Lead Software developer",
@@ -49,6 +51,7 @@ const steps = [
     tincidunt molestie. Fusce et augue vel eros consequat molestie.
     Suspendisse auctor enim non odio finibus, et tincidunt felis
     vulputate.`,
+    small: false,
   },
   {
     label: "Full-Stack MVP development",
@@ -57,6 +60,7 @@ const steps = [
               and learn how to enhance your ads using features like ad extensions.
               If you run into any problems with your ads, find out how to tell if
               they're running and how to resolve approval issues.`,
+    small: true,
   },
   {
     label: "Website development",
@@ -65,6 +69,7 @@ const steps = [
               and learn how to enhance your ads using features like ad extensions.
               If you run into any problems with your ads, find out how to tell if
               they're running and how to resolve approval issues.`,
+    small: true,
   },
   {
     label: "Pitch deck",
@@ -73,6 +78,7 @@ const steps = [
               and learn how to enhance your ads using features like ad extensions.
               If you run into any problems with your ads, find out how to tell if
               they're running and how to resolve approval issues.`,
+    small: true,
   },
 ];
 
@@ -93,8 +99,12 @@ const ColorlibStepIconRoot = styled("div")<{
     backgroundImage: "linear-gradient( 330deg, #143DA6 10%,  #53FFAA 100%)",
     boxShadow: "0 4px 10px 0 rgba(0,0,0,.25)",
   }),
-  "&:hover": { backgroundColor: theme.palette.primary.main },
 }));
+
+const ColorlibSmallStepIconRoot = styled(ColorlibStepIconRoot)({
+  width: 35,
+  height: 35,
+});
 
 function ColorlibStepIcon(props: StepIconProps) {
   const { active, className } = props;
@@ -102,26 +112,31 @@ function ColorlibStepIcon(props: StepIconProps) {
   const icons: { [index: string]: React.ReactElement } = {};
 
   return (
-    <ColorlibStepIconRoot ownerState={{ active }} className={className}>
-      {icons[String(props.icon)]}
-    </ColorlibStepIconRoot>
+    <>
+      <ColorlibStepIconRoot ownerState={{ active }} className={"icon-thing"}>
+        {icons[String(props.icon)]}
+      </ColorlibStepIconRoot>
+    </>
+  );
+}
+
+function ColorlibSmallStepIcon(props: StepIconProps) {
+  const { active, className } = props;
+
+  const icons: { [index: string]: React.ReactElement } = {};
+
+  return (
+    <>
+      <ColorlibSmallStepIconRoot
+        ownerState={{ active }}
+        className={"icon-thing"}
+      />
+    </>
   );
 }
 
 const VerticalLinearStepper: React.FC = () => {
   const [activeStep, setActiveStep] = React.useState(-1);
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
 
   const handleStep = (step: number) => () => {
     setActiveStep(step);
@@ -138,9 +153,39 @@ const VerticalLinearStepper: React.FC = () => {
         {steps.map((step, index) => (
           <Step key={step.label}>
             <StepLabel
-              StepIconComponent={ColorlibStepIcon}
+              StepIconComponent={
+                index < 2 ? ColorlibStepIcon : ColorlibSmallStepIcon
+              }
               onClick={handleStep(index)}
-              sx={{ cursor: "pointer" }}
+              sx={{
+                cursor: "pointer",
+                "& .MuiStepLabel-labelContainer": {
+                  transition: "0.3s",
+                },
+
+                "& .icon-thing": {
+                  transition: "0.2s",
+                },
+                "&:hover .MuiStepLabel-labelContainer": {
+                  backgroundColor: "#f4f4f4",
+                },
+                ...(index > 1 && {
+                  "& .icon-thing": {
+                    marginLeft: "8px",
+                  },
+                }),
+                ...(activeStep === index && {
+                  "&:hover .MuiStepLabel-labelContainer": {
+                    backgroundColor: "transparent",
+                  },
+                }),
+                "&:hover .icon-thing": {
+                  backgroundColor: "#f4f4f4",
+                  borderColor: "#bdbdbd",
+                  borderStyle: "solid",
+                  borderWidth: "0.5px",
+                },
+              }}
               optional={
                 <Typography variant="caption">{step.subtitle}</Typography>
               }
@@ -150,17 +195,26 @@ const VerticalLinearStepper: React.FC = () => {
             <StepContent>
               <Typography>{step.description}</Typography>
             </StepContent>
+            <StepConnector
+              sx={{
+                marginLeft: "24px",
+                minHeight: "24px",
+                ...(activeStep === index && {
+                  minHeight: "0px",
+                }),
+                ...(index + 1 === steps.length && {
+                  minHeight: "0px",
+                }),
+                ...(activeStep !== index && {
+                  borderColor: "#bdbdbd",
+                  borderLeftStyle: "solid",
+                  borderLeftWidth: "2px",
+                }),
+              }}
+            ></StepConnector>
           </Step>
         ))}
       </Stepper>
-      {activeStep === steps.length && (
-        <Paper square elevation={0} sx={{ p: 3 }}>
-          <Typography>All steps completed - you&apos;re finished</Typography>
-          <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-            Reset
-          </Button>
-        </Paper>
-      )}
     </Box>
   );
 };
@@ -210,9 +264,9 @@ const Work: NextPage = () => {
             direction={"row"}
             textAlign={"left"}
             display="flex"
-            mt={1}
+            mb={1}
           >
-            <Link href={"https://walk4money.app"}>
+            <Link underline="hover" href={"https://walk4money.app"}>
               <Typography
                 sx={{
                   color: (theme) => theme.palette.primary.dark,
