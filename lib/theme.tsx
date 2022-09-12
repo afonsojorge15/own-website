@@ -21,38 +21,55 @@ let theme = createTheme({
       default: "#f4f4f4",
     },
     info: {
-      main: "#143DA6",
+      main: "#454545",
     },
   },
   typography: {
-    fontFamily:
-      '"Charter", "Maven Pro", "Sabon", "Roboto", "Helvetica", "Arial", "sans-serif"',
-    h1: {
-      fontWeight: 700,
-    },
-    h6: {
-      fontWeight: 300,
-    },
-    body1: {
-      fontFamily: "Open Sans",
-    },
+    fontFamily: '"Roboto","OpenSans", "Helvetica", "Arial", "sans-serif"',
   },
   components: {
+    MuiTypography: {
+      styleOverrides: {
+        h1: {
+          fontSize: "3rem",
+          fontWeight: 800,
+        },
+        h2: {
+          fontSize: "2.5rem",
+        },
+        h3: {
+          fontSize: "2rem",
+        },
+        h4: {
+          fontSize: "1.75rem",
+        },
+        h5: {
+          fontSize: "1.5rem",
+        },
+        h6: {
+          fontSize: "1.25rem",
+        },
+        body1: {
+          fontFamily: "Open Sans",
+          fontSize: "1rem",
+        },
+      },
+    },
     MuiMenu: {
       styleOverrides: {
         paper: {
-          fontFamily: "Maven Pro",
+          fontFamily: "Roboto",
+          fontWeight: 500,
         },
         list: {
-          backgroundColor: "#53FFAA",
-          color: "#143DA6",
+          backgroundColor: "#ffffff",
         },
       },
     },
     MuiMenuItem: {
       styleOverrides: {
         root: {
-          fontFamily: "Maven Pro",
+          fontFamily: "Open Sans",
           fontWeight: 500,
         },
       },
@@ -62,6 +79,13 @@ let theme = createTheme({
         root: {
           fontWeight: 500,
           color: "#000000",
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        rounded: {
+          borderRadius: 8,
         },
       },
     },
@@ -75,9 +99,13 @@ let theme = createTheme({
           paddingRight: 7,
           borderRadius: 7,
           paddingTop: 5,
+          paddingBottom: 3,
         },
         label: {
           lineHeight: 1.2,
+          fontWeight: 400,
+          fontFamily: "Roboto",
+          fontSize: "1rem",
           "&.Mui-active": {
             fontWeight: 500,
           },
