@@ -1,6 +1,9 @@
 import {
   Box,
   Grid,
+  IconButton,
+  Menu,
+  MenuItem,
   SelectChangeEvent,
   Typography,
   useMediaQuery,
@@ -9,15 +12,16 @@ import {
 import Router, { useRouter } from "next/router";
 import React, { FC } from "react";
 import Link from "next/link";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 
 export type LinkableItem = {
   href: string;
   title: string;
+  left?: boolean;
 };
 
 const navBarItemList: LinkableItem[] = [
-  { href: "/", title: "Afonso Jorge" },
-  { href: "/work", title: "Work" },
+  { href: "/work", title: "Work", left: true },
   { href: "/photography", title: "Photography" },
   { href: "/films", title: "Films" },
   { href: "/contact", title: "Contact" },
@@ -27,19 +31,87 @@ const NavBarItemContainer: FC<LinkableItem & { isActive: boolean }> = ({
   href,
   title,
   isActive,
+  left,
 }) => {
   return (
-    <Box m={0} mx={1}>
+    <Box mx={0}>
       <Typography
         onClick={() => Router.push(href)}
+        variant="body1"
+        fontFamily="Roboto"
         sx={{
           cursor: "pointer",
           fontWeight: isActive ? 800 : 400,
+          px: "2rem",
+          borderLeftColor: "hsl(0, 0%, 74.11764705882354%, 0.4)",
+          borderLeftStyle: "solid",
+          ...(left && {
+            borderLeftStyle: "none",
+          }),
+          borderLeftWidth: "0.5px",
         }}
       >
         {title}
       </Typography>
     </Box>
+  );
+};
+const MobileMenu: React.FC = () => {
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+    null
+  );
+
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  return (
+    <>
+      {" "}
+      <IconButton
+        onClick={handleOpenUserMenu}
+        size="large"
+        edge="end"
+        color="inherit"
+      >
+        <MenuRoundedIcon />
+      </IconButton>
+      <Menu
+        sx={{ mt: "25px" }}
+        id="menu-appbar"
+        anchorEl={anchorElUser}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        open={Boolean(anchorElUser)}
+        elevation={4}
+        onClose={handleCloseUserMenu}
+      >
+        {navBarItemList.map((item) => (
+          <MenuItem
+            key={item.title}
+            onClick={() => {
+              setAnchorElUser(null);
+              Router.push(item.href);
+            }}
+          >
+            <Typography textAlign="center" variant="body1" fontFamily="Roboto">
+              <Link href={item.href}>{item.title}</Link>
+            </Typography>
+          </MenuItem>
+        ))}
+      </Menu>
+    </>
   );
 };
 
@@ -50,7 +122,7 @@ const NavBar: React.FC = () => {
 
   return (
     <Box
-      px={isSmall ? 1 : 3}
+      px={isSmall ? 3 : 3}
       sx={{
         display: "flex",
         justifyContent: "space-between",
@@ -58,52 +130,82 @@ const NavBar: React.FC = () => {
         width: "100%",
         height: 50,
         background: theme.palette.primary.light,
-        boxShadow: 1,
+        borderBottomColor: "hsl(0, 0%, 74.11764705882354%, 0.5)",
+        borderBottomStyle: "solid",
+        borderBottomWidth: "1px",
+        overflow: "hidden",
         zIndex: 1,
       }}
     >
-      <Box display="flex">
-        {navBarItemList.map((item) => (
-          <NavBarItemContainer
-            key={item.title}
-            isActive={pathname === item.href}
-            {...item}
-          />
-        ))}
+      <Box display="flex" height="inherit" minWidth="6rem" alignItems="center">
+        <Typography
+          sx={{
+            cursor: "pointer",
+            fontWeight: pathname === "/" ? 800 : 400,
+          }}
+          variant="body1"
+          fontFamily="Roboto"
+          onClick={() => {
+            Router.push("/");
+          }}
+        >
+          Afonso Jorge
+        </Typography>
       </Box>
+      {isSmall ? (
+        <Box
+          display="flex"
+          flex="1"
+          height="inherit"
+          alignItems="center"
+          justifyContent="end"
+        >
+          <MobileMenu></MobileMenu>
+        </Box>
+      ) : (
+        <>
+          <Box
+            display="flex"
+            flex="1"
+            height="inherit"
+            alignItems="center"
+            sx={{
+              ml: "2rem",
+              borderLeftColor: "hsl(0, 0%, 74.11764705882354%, 0.4)",
+              borderLeftStyle: "solid",
+              borderLeftWidth: "0.5px",
+            }}
+          >
+            {navBarItemList.map((item) => (
+              <NavBarItemContainer
+                key={item.title}
+                isActive={pathname === item.href}
+                {...item}
+              />
+            ))}
+          </Box>
+          <Box
+            display="flex"
+            height="inherit"
+            minWidth="6rem"
+            alignItems="center"
+          >
+            <Typography
+              sx={{
+                cursor: "pointer",
+                fontWeight: pathname === "/" ? 800 : 400,
+              }}
+              onClick={() => {
+                Router.push("/");
+              }}
+            >
+              Afonso Jorge
+            </Typography>
+          </Box>
+        </>
+      )}
     </Box>
   );
 };
 
 export default NavBar;
-/*
-<Box px={2} width={"100%"} maxWidth="1100px">
-        <Grid
-          columnSpacing={5}
-          container
-          alignContent={"center"}
-          alignItems={"center"}
-        >
-          <Grid xs item>
-            <Typography
-              lineHeight={1.5}
-              onClick={() => Router.push("/")}
-              fontWeight={500}
-              sx={{
-                cursor: "pointer",
-              }}
-              variant="h4"
-            >
-              dwdwdw
-            </Typography>
-          </Grid>
-          <Grid
-            sx={{
-              minHeight: "48.56px",
-              pt: { md: 0.7, lg: 0.7, xl: 0.7, xs: 0, sm: 0.5 },
-            }}
-            item
-          ></Grid>
-        </Grid>
-      </Box>
-*/
