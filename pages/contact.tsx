@@ -74,7 +74,7 @@ const Home: NextPage = () => {
             variant="h3"
             fontWeight={"600"}
           >
-            Contact:
+            Contacts
           </Typography>
           <Stack
             alignItems="center"
