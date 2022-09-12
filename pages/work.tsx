@@ -30,14 +30,8 @@ const steps = [
   {
     label: "Internship - Junior Software developer",
     subtitle: "Summer 2019",
-    description: `            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-    commodo purus elementum, aliquet magna ac, commodo dolor. Nulla ut
-    sem elit. Etiam auctor elit a dapibus interdum. Pellentesque vitae
-    tristique erat. In condimentum ullamcorper orci, et finibus dolor
-    varius hendrerit. Donec sed vehicula mi. Ut bibendum dui ut
-    tincidunt molestie. Fusce et augue vel eros consequat molestie.
-    Suspendisse auctor enim non odio finibus, et tincidunt felis
-    vulputate.`,
+    description: `As an interning junior programmer, I was assigned the production of a prototype application based on the business model the company had created.  
+    I developed a serverless react native app with an intense focus on designing the application's architecture and overall flow.`,
     small: false,
   },
   {
@@ -102,8 +96,8 @@ const ColorlibStepIconRoot = styled("div")<{
 }));
 
 const ColorlibSmallStepIconRoot = styled(ColorlibStepIconRoot)({
-  width: 35,
-  height: 35,
+  width: 30,
+  height: 30,
 });
 
 function ColorlibStepIcon(props: StepIconProps) {
@@ -171,7 +165,7 @@ const VerticalLinearStepper: React.FC = () => {
                 },
                 ...(index > 1 && {
                   "& .icon-thing": {
-                    marginLeft: "8px",
+                    marginLeft: "10px",
                   },
                 }),
                 ...(activeStep === index && {
@@ -187,13 +181,21 @@ const VerticalLinearStepper: React.FC = () => {
                 },
               }}
               optional={
-                <Typography variant="caption">{step.subtitle}</Typography>
+                <>
+                  {index > 1 ? (
+                    <></>
+                  ) : (
+                    <Typography variant="caption">{step.subtitle}</Typography>
+                  )}
+                </>
               }
             >
               {step.label}
             </StepLabel>
             <StepContent>
-              <Typography>{step.description}</Typography>
+              <Typography mb="5px" variant="body1">
+                {step.description}
+              </Typography>
             </StepContent>
             <StepConnector
               sx={{
@@ -242,8 +244,8 @@ const Work: NextPage = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          px: "30px",
-          py: "30px",
+          px: "40px",
+          py: "40px",
           mb: "70px",
           background: theme.palette.primary.light,
           boxShadow: 2,
@@ -274,7 +276,7 @@ const Work: NextPage = () => {
                   pb: "6px",
                 }}
                 variant="h5"
-                fontWeight={"600"}
+                fontWeight={"500"}
               >
                 Walk4Money
               </Typography>
