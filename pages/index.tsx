@@ -12,22 +12,18 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
+  styled,
 } from "@mui/material";
 import type { NextPage } from "next";
 import { LinkableItem } from "../components/NavBar";
 import React, { FC } from "react";
+import Link from "next/link";
 
 type ChipItem = {
   title: string;
 };
 
-const navBarItemList: LinkableItem[] = [
-  { href: "/", title: "Afonso Jorge" },
-  { href: "/work", title: "Work" },
-  { href: "/photography", title: "Photography" },
-  { href: "/films", title: "Films" },
-  { href: "/contact", title: "Contact" },
-];
+const navBarItemList: LinkableItem[] = [{ href: "/contact", title: "Contact" }];
 
 const ChipItemList: ChipItem[] = [
   { title: "Nodejs" },
@@ -36,6 +32,25 @@ const ChipItemList: ChipItem[] = [
   { title: "React Native" },
   { title: "SQL" },
 ];
+
+const ContactLink = styled("a")`
+  text-decoration: underline;
+  cursor: pointer;
+  font-style: italic;
+`;
+
+const ColorlibStepIconRoot = styled("div")(({ theme }) => ({
+  backgroundColor:
+    theme.palette.mode === "dark" ? theme.palette.grey[700] : "#ccc",
+  zIndex: 1,
+  color: "#fff",
+  width: "10rem",
+  height: "10rem",
+  display: "flex",
+  borderRadius: "50%",
+  justifyContent: "center",
+  alignItems: "center",
+}));
 
 const Home: NextPage = ({}) => {
   let theme = useTheme();
@@ -51,31 +66,41 @@ const Home: NextPage = ({}) => {
       mr="auto"
       my={"50px"}
       px={"20px"}
-      sx={{ background: theme.palette.primary.main }}
+      sx={{ background: theme.palette.background.default }}
     >
-      <Paper
+      <Box
         sx={{
-          display: "block",
+          display: "flex",
           width: "100%",
-          flexDirection: "column",
-          alignItems: "center",
+          flexWrap: "wrap",
+          flexDirection: "row",
           justifyContent: "center",
-          px: "30px",
-          py: "50px",
-          mb: "50px",
-          background: theme.palette.primary.light,
-          boxShadow: 2,
+          alignItems: "center",
+          mb: "20px",
         }}
       >
         <Box
           sx={{
             display: "flex",
             width: "100%",
-            flexDirection: "column",
-            alignItems: "left",
+            flex: 1,
+            height: "inherit",
+            flexDirection: "row",
             justifyContent: "center",
-            mb: "20px",
+            mb: 2,
           }}
+          alignItems={isSmall ? "center" : "left"}
+        >
+          {" "}
+          <ColorlibStepIconRoot />
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+          alignItems={isSmall ? "center" : "left"}
         >
           <Typography
             sx={{
@@ -83,7 +108,6 @@ const Home: NextPage = ({}) => {
               textAlign: "left",
             }}
             variant="h6"
-            fontWeight={"500"}
           >
             Hi, I&apos;m
           </Typography>
@@ -101,16 +125,15 @@ const Home: NextPage = ({}) => {
               color: (theme) => theme.palette.primary.dark,
             }}
             variant="h6"
-            fontWeight={"500"}
           >
             Software engineer and developer
           </Typography>
           <Stack
-            justifyContent={"left"}
+            justifyContent={isSmall ? "center" : "left"}
             alignItems="left"
-            flexWrap={"wrap"}
-            direction={"row"}
-            textAlign={"left"}
+            flexWrap="wrap"
+            direction="row"
+            alignContent="left"
             display="flex"
             mt={3}
           >
@@ -121,44 +144,22 @@ const Home: NextPage = ({}) => {
             ))}
           </Stack>
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            width: "100%",
-            flexDirection: "column",
-            alignItems: "left",
-            justifyContent: "center",
-            mb: "40px",
-          }}
-        >
-          <Typography
-            sx={{
-              color: (theme) => theme.palette.primary.dark,
-              textAlign: "center",
-              mb: 2,
-            }}
-            variant="h6"
-            fontWeight={"400"}
-          >
-            About:
-          </Typography>
-          <Typography
-            sx={{
-              color: (theme) => theme.palette.primary.dark,
-            }}
-            variant="body1"
-            fontWeight={"400"}
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-            commodo purus elementum, aliquet magna ac, commodo dolor. Nulla ut
-            sem elit. Etiam auctor elit a dapibus interdum. Pellentesque vitae
-            tristique erat. In condimentum ullamcorper orci, et finibus dolor
-            varius hendrerit. Donec sed vehicula mi. Ut bibendum dui ut
-            tincidunt molestie. Fusce et augue vel eros consequat molestie.
-            Suspendisse auctor enim non odio finibus, et tincidunt felis
-            vulputate.
-          </Typography>
-        </Box>
+      </Box>
+
+      <Paper
+        elevation={2}
+        sx={{
+          display: "block",
+          width: "100%",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          px: "30px",
+          py: "30px",
+          mb: "50px",
+          background: theme.palette.primary.light,
+        }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -171,11 +172,11 @@ const Home: NextPage = ({}) => {
           <Typography
             sx={{
               color: (theme) => theme.palette.primary.dark,
-              textAlign: "center",
+              textAlign: "left",
               mb: 2,
             }}
             variant="h6"
-            fontWeight={"400"}
+            fontWeight={"500"}
           >
             About this website:
           </Typography>
@@ -188,7 +189,7 @@ const Home: NextPage = ({}) => {
           >
             A modern, responsive, statically-generated react application built
             with NextJS using typescript. Soon to implement GraphQL, Apollo and
-            Nexus, as well as other DevOps feautures.
+            a REST API, as well as Github actions.
           </Typography>
         </Box>
       </Paper>
@@ -210,8 +211,9 @@ const Home: NextPage = ({}) => {
             display: "flex",
             width: "100%",
             flexDirection: "column",
-            alignItems: "left",
+            alignItems: "center",
             justifyContent: "center",
+            textAlign: "center",
           }}
         >
           <Typography
@@ -222,21 +224,11 @@ const Home: NextPage = ({}) => {
             fontWeight={"400"}
           >
             *Currently not based in London but I&apos;m looking to change that.
-            If you&apos;re currently hiring Front-end/ Full-stack developers,
-            fell free to
-            <Typography
-              onClick={() => Router.push(navBarItemList[4].href)}
-              sx={{
-                textDecoration: "underline",
-
-                cursor: "pointer",
-              }}
-              variant="body1"
-              fontWeight={"400"}
-              fontStyle="italic"
-            >
-              contact me.
-            </Typography>
+            If you&apos;re currently hiring Full-stack / Front-end developers,
+            fell free to{" "}
+            <Link href="/contact">
+              <ContactLink>contact me</ContactLink>
+            </Link>
           </Typography>
         </Box>
       </Paper>
