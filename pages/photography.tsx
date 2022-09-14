@@ -18,14 +18,7 @@ import {
   useTheme,
 } from "@mui/material";
 import type { NextPage } from "next";
-import { LinkableItem } from "../components/NavBar";
 import React, { FC } from "react";
-import Link from "next/link";
-import styled from "@emotion/styled";
-
-type ChipItem = {
-  title: string;
-};
 
 const Photography: NextPage = ({}) => {
   let theme = useTheme();
@@ -43,7 +36,7 @@ const Photography: NextPage = ({}) => {
       mr="auto"
       my={"50px"}
       px={"20px"}
-      sx={{ background: theme.palette.primary.main }}
+      sx={{ background: theme.palette.background.default }}
     >
       <Box
         sx={{
@@ -72,7 +65,7 @@ const Photography: NextPage = ({}) => {
           </Box>
           <Typography
             sx={{
-              color: (theme) => theme.palette.primary.dark,
+              color: (theme) => theme.palette.text.primary,
             }}
             variant="h6"
             fontWeight={"300"}
@@ -81,7 +74,7 @@ const Photography: NextPage = ({}) => {
           </Typography>
           <Typography
             sx={{
-              color: (theme) => theme.palette.primary.dark,
+              color: (theme) => theme.palette.text.primary,
             }}
             variant="h6"
             fontWeight={"300"}
@@ -90,7 +83,7 @@ const Photography: NextPage = ({}) => {
           </Typography>
           <Typography
             sx={{
-              color: (theme) => theme.palette.primary.dark,
+              color: (theme) => theme.palette.text.primary,
             }}
             variant="h6"
             fontWeight={"300"}
