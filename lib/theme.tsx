@@ -1,179 +1,148 @@
-import {
-  createTheme,
-  responsiveFontSizes,
-  ThemeOptions,
-} from "@mui/material/styles";
-import { borderRadius, palette } from "@mui/system";
+import { createTheme } from "@mui/material/styles";
+import { ThemeOptions } from "@mui/system";
 import { Context } from "react";
 
-let theme = createTheme({
-  palette: {
-    mode: "light",
+const defaultTheme = createTheme();
+
+export const createCustomTheme = (params: { light: boolean }) => {
+  const { light } = params;
+  const palette: ThemeOptions["palette"] = {
     primary: {
       main: "#f4f4f4",
       dark: "#000000",
       light: "#ffffff",
-    },
-    secondary: {
-      main: "#e8e8f0",
+      contrastText: "#5C3483",
     },
     background: {
-      default: "#f4f4f4",
+      default: light ? "#f4f4f4" : "#454545",
+      paper: light ? "regb(0,0,0,0.1) " : "#454545",
     },
-    info: {
-      main: "#454545",
+    text: {
+      primary: light
+        ? defaultTheme.palette.common.black
+        : defaultTheme.palette.common.white,
+
+      secondary: light
+        ? defaultTheme.palette.common.white
+        : defaultTheme.palette.common.black,
     },
-  },
-  typography: {
-    fontFamily: '"Roboto","OpenSans", "Helvetica", "Arial", "sans-serif"',
-  },
-  components: {
-    MuiTypography: {
-      styleOverrides: {
-        h1: {
-          fontSize: "3rem",
-          fontWeight: 800,
-        },
-        h2: {
-          fontSize: "2.5rem",
-        },
-        h3: {
-          fontSize: "2rem",
-        },
-        h4: {
-          fontSize: "1.75rem",
-        },
-        h5: {
-          fontSize: "1.5rem",
-        },
-        h6: {
-          fontSize: "1.25rem",
-        },
-        body1: {
-          fontFamily: "Open Sans",
-          fontSize: "1rem",
+    mode: light ? "light" : "dark",
+  };
+
+  return createTheme({
+    typography: {
+      fontFamily: '"Roboto","OpenSans", "Helvetica", "Arial", "sans-serif"',
+    },
+    palette,
+    components: {
+      MuiTypography: {
+        styleOverrides: {
+          h1: {
+            fontSize: "3rem",
+            fontWeight: 600,
+          },
+          h2: {
+            fontSize: "2.5rem",
+          },
+          h3: {
+            fontSize: "2rem",
+          },
+          h4: {
+            fontSize: "1.75rem",
+          },
+          h5: {
+            fontSize: "1.5rem",
+          },
+          h6: {
+            fontSize: "1.25rem",
+          },
+          body1: {
+            fontFamily: "Open Sans",
+            fontSize: "1rem",
+          },
         },
       },
-    },
-    MuiMenu: {
-      styleOverrides: {
-        paper: {
-          fontFamily: "Roboto",
-          fontWeight: 500,
-        },
-        list: {
-          backgroundColor: "#ffffff",
-        },
-      },
-    },
-    MuiMenuItem: {
-      styleOverrides: {
-        root: {
-          fontFamily: "Open Sans",
-          fontWeight: 500,
+      MuiMenu: {
+        styleOverrides: {
+          paper: {
+            fontFamily: "Roboto",
+            fontWeight: 500,
+          },
+          list: {
+            backgroundColor: "#ffffff",
+          },
         },
       },
-    },
-    MuiChip: {
-      styleOverrides: {
-        root: {
-          fontWeight: 500,
-          color: "#000000",
-        },
-      },
-    },
-    MuiPaper: {
-      styleOverrides: {
-        rounded: {
-          borderRadius: 8,
-        },
-      },
-    },
-    MuiStepLabel: {
-      styleOverrides: {
-        labelContainer: {
-          display: "flex",
-          flexDirection: "column",
-          width: "inherit",
-          paddingLeft: 7,
-          paddingRight: 7,
-          borderRadius: 7,
-          paddingTop: 5,
-          paddingBottom: 3,
-        },
-        label: {
-          lineHeight: 1.2,
-          fontWeight: 400,
-          fontFamily: "Roboto",
-          fontSize: "1rem",
-          "&.Mui-active": {
+      MuiMenuItem: {
+        styleOverrides: {
+          root: {
+            fontFamily: "Open Sans",
             fontWeight: 500,
           },
         },
       },
-    },
-    MuiStepContent: {
-      styleOverrides: {
-        root: {
-          borderWidth: 2,
-          borderRadius: 10,
-          marginLeft: "24px",
-          borderLeftWidth: 2,
-          borderImage: "linear-gradient( 0deg, #143DA6 ,  #53FFAA 60% ) 0 100%",
+      MuiChip: {
+        styleOverrides: {
+          root: {
+            fontWeight: 500,
+            color: palette.text?.secondary,
+            backgroundColor: palette.primary?.contrastText,
+            "& .MuiChip-icon": {
+              color: palette.text?.secondary,
+            },
+          },
+        },
+      },
+      MuiPaper: {
+        styleOverrides: {
+          rounded: {
+            borderRadius: 8,
+          },
+        },
+      },
+      MuiStepLabel: {
+        styleOverrides: {
+          labelContainer: {
+            display: "flex",
+            flexDirection: "column",
+            width: "inherit",
+            paddingLeft: 7,
+            paddingRight: 7,
+            borderRadius: 7,
+            paddingTop: 5,
+            paddingBottom: 3,
+            color: palette.text?.primary,
+          },
+          label: {
+            lineHeight: 1.2,
+            fontWeight: 400,
+            fontFamily: "Roboto",
+            fontSize: "1rem",
+            "&.Mui-active": {
+              fontWeight: 500,
+            },
+          },
+        },
+      },
+      MuiStepContent: {
+        styleOverrides: {
+          root: {
+            borderWidth: 2,
+            borderRadius: 10,
+            marginLeft: "24px",
+            borderLeftWidth: 2,
+            borderImage:
+              "linear-gradient( 0deg, #143DA6 ,  #53FFAA 60% ) 0 100%",
+          },
+        },
+      },
+      MuiStepConnector: {
+        styleOverrides: {
+          lineVertical: {
+            minHeight: 0,
+          },
         },
       },
     },
-    MuiStepConnector: {
-      styleOverrides: {
-        lineVertical: {
-          minHeight: 0,
-        },
-      },
-    },
-  },
-});
-
-theme = responsiveFontSizes(theme);
-
-export default theme;
-
-//theme = responsiveFontSizes(theme);
-/*
-    palette: {
-      mode: "dark",
-      primary: {
-        main: "#fff",
-        dark: "#F0F0F0",
-      },
-      secondary: {
-        main: "#53FFAA",
-      },
-      background: {
-        default: "#143DA6",
-      },
-      info: {
-        main: "#143DA6",
-      },
-    },
-
-    export const createCustomTheme = (params: { isDark: Context<boolean> }) => {
-  const { isDark } = params;
-  const palette: ThemeOptions["palette"] = {
-    primary: {
-      main: "#257DC3",
-      dark: "#333333",
-      light: "#48a7da",
-    },
-    background: {
-      default: isDark
-        ? defaultTheme.palette.grey[50]
-        : defaultTheme.palette.primary.dark,
-    },
-    text: {
-      primary: isDark
-        ? defaultTheme.palette.common.black
-        : defaultTheme.palette.common.white,
-    },
-    mode: isDark ? "dark" : "light",
-  };
-*/
+  });
+};
