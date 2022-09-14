@@ -13,6 +13,8 @@ import {
   useMediaQuery,
   useTheme,
   styled,
+  Divider,
+  keyframes,
 } from "@mui/material";
 import type { NextPage } from "next";
 import { LinkableItem } from "../components/NavBar";
@@ -22,8 +24,6 @@ import Link from "next/link";
 type ChipItem = {
   title: string;
 };
-
-const navBarItemList: LinkableItem[] = [{ href: "/contact", title: "Contact" }];
 
 const ChipItemList: ChipItem[] = [
   { title: "Nodejs" },
@@ -41,12 +41,20 @@ const ContactLink = styled("a")`
 
 const ColorlibStepIconRoot = styled("div")(({ theme }) => ({
   backgroundColor:
-    theme.palette.mode === "dark" ? theme.palette.grey[700] : "#ccc",
+    theme.palette.mode === "dark" ? theme.palette.grey[700] : "rgb(0,0,0,0.15)",
   zIndex: 1,
   color: "#fff",
-  width: "10rem",
-  height: "10rem",
-  display: "flex",
+  [theme.breakpoints.down("sm")]: {
+    width: "9rem",
+    height: "9rem",
+  },
+  [theme.breakpoints.only("sm")]: {
+    width: "10.5rem",
+    height: "10.5rem",
+  },
+  width: "11rem",
+  height: "11rem",
+
   borderRadius: "50%",
   justifyContent: "center",
   alignItems: "center",
@@ -55,6 +63,19 @@ const ColorlibStepIconRoot = styled("div")(({ theme }) => ({
 const Home: NextPage = ({}) => {
   let theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMid = useMediaQuery(theme.breakpoints.down("md"));
+
+  const blink = keyframes`
+  from {
+    color: #000000;
+  }
+  50% {
+    color: #9c52e6;
+  }
+  to {
+    color: #000000;
+  }
+`;
 
   return (
     <Box
@@ -71,23 +92,24 @@ const Home: NextPage = ({}) => {
       <Box
         sx={{
           display: "flex",
-          width: "100%",
           flexWrap: "wrap",
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
-          mb: "20px",
+          mb: isSmall ? "2em" : "4em",
+          mt: isSmall ? "3em" : "5em",
         }}
       >
         <Box
           sx={{
             display: "flex",
             width: "100%",
-            flex: 1,
+            flex: 0.65,
             height: "inherit",
             flexDirection: "row",
             justifyContent: "center",
-            mb: 2,
+            pr: isSmall ? 0 : 3,
+            mb: isSmall ? 5 : 2,
           }}
           alignItems={isSmall ? "center" : "left"}
         >
@@ -101,50 +123,86 @@ const Home: NextPage = ({}) => {
             justifyContent: "center",
           }}
           alignItems={isSmall ? "center" : "left"}
+          textAlign={isSmall ? "center" : "left"}
         >
           <Typography
             sx={{
-              color: (theme) => theme.palette.primary.dark,
+              color: (theme) => theme.palette.text.primary,
               textAlign: "left",
             }}
             variant="h6"
+            fontWeight={500}
           >
             Hi, I&apos;m
           </Typography>
           <Typography
             sx={{
-              color: (theme) => theme.palette.primary.dark,
+              color: (theme) => theme.palette.primary.contrastText,
+              /*fontSize: { sm: "3.5rem", md: "4.5rem" },
+              [theme.breakpoints.only("sm")]: {
+                fontSize: "4rem",
+              },*/
             }}
             variant="h2"
             fontWeight={"600"}
           >
             Afonso Jorge
           </Typography>
-          <Typography
-            sx={{
-              color: (theme) => theme.palette.primary.dark,
-            }}
-            variant="h6"
-          >
-            Software engineer and developer
-          </Typography>
+          <Box display={"flex"} flexDirection={"row"}>
+            <Typography
+              sx={{
+                color: (theme) => theme.palette.text.primary,
+              }}
+              variant="h6"
+              fontWeight={500}
+            >
+              Software &nbsp;
+            </Typography>
+            <Typography
+              sx={{
+                color: (theme) => theme.palette.primary.contrastText,
+              }}
+              variant="h6"
+              fontWeight={500}
+            >
+              engineer &nbsp;
+            </Typography>
+            <Typography
+              sx={{
+                color: (theme) => theme.palette.text.primary,
+              }}
+              variant="h6"
+              fontWeight={500}
+            >
+              and &nbsp;
+            </Typography>
+            <Typography
+              sx={{
+                color: (theme) => theme.palette.primary.contrastText,
+              }}
+              variant="h6"
+              fontWeight={500}
+            >
+              developer
+            </Typography>
+          </Box>
+
           <Stack
             justifyContent={isSmall ? "center" : "left"}
-            alignItems="left"
             flexWrap="wrap"
             direction="row"
-            alignContent="left"
             display="flex"
             mt={3}
           >
             {ChipItemList.map((item, key) => (
-              <Box key={key} pb={3} pr={2}>
+              <Box key={key} pb={3} pr={isSmall ? 1 : 3} pl={isSmall ? 1 : 0}>
                 <Chip key={key} icon={<DoneIcon />} label={item.title} />
               </Box>
             ))}
           </Stack>
         </Box>
       </Box>
+      <Divider />
 
       <Paper
         elevation={2}
@@ -155,8 +213,10 @@ const Home: NextPage = ({}) => {
           alignItems: "center",
           justifyContent: "center",
           px: "30px",
-          py: "30px",
+          py: "25px",
           mb: "50px",
+          mt: "5em",
+
           background: theme.palette.primary.light,
         }}
       >
@@ -188,8 +248,9 @@ const Home: NextPage = ({}) => {
             fontWeight={"400"}
           >
             A modern, responsive, statically-generated react application built
-            with NextJS using typescript. Soon to implement GraphQL, Apollo and
-            a REST API, as well as Github actions.
+            with NextJS using typescript. Reusable UI interface built with
+            Material-UI. Soon to implement GraphQL, Apollo and a REST API, as
+            well as Github actions.
           </Typography>
         </Box>
       </Paper>
@@ -219,13 +280,14 @@ const Home: NextPage = ({}) => {
           <Typography
             sx={{
               color: (theme) => theme.palette.primary.dark,
+              animation: `${blink} 1s linear infinite`,
             }}
             variant="body1"
             fontWeight={"400"}
           >
-            *Currently not based in London but I&apos;m looking to change that.
-            If you&apos;re currently hiring Full-stack / Front-end developers,
-            fell free to{" "}
+            *Currently not based in London but you can help me change that. If
+            you&apos;re currently hiring Full-stack / Front-end developers, fell
+            free to{" "}
             <Link href="/contact">
               <ContactLink>contact me</ContactLink>
             </Link>
