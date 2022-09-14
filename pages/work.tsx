@@ -29,49 +29,36 @@ import { StyledComponent } from "@emotion/styled";
 const steps = [
   {
     label: "Internship - Junior Software developer",
-    subtitle: "Summer 2019",
-    description: `As an interning junior programmer, I was assigned the production of a prototype application based on the business model the company had created.  
-    I developed a serverless react native app with an intense focus on designing the application's architecture and overall flow.`,
+    subtitle: "July 2019 - September 2019",
+    description: `As an interning junior programmer, I was tasked with the production of a prototype application, based on the company's business model, to assess its feasibility.  
+    I developed a serverless react native app, using javascript, with an intense focus on usability and designing the application's overall flow.`,
     small: false,
   },
   {
     label: "Full-time - Lead Software developer",
     subtitle: "Nov 2021 - Present",
-    description: `            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-    commodo purus elementum, aliquet magna ac, commodo dolor. Nulla ut
-    sem elit. Etiam auctor elit a dapibus interdum. Pellentesque vitae
-    tristique erat. In condimentum ullamcorper orci, et finibus dolor
-    varius hendrerit. Donec sed vehicula mi. Ut bibendum dui ut
-    tincidunt molestie. Fusce et augue vel eros consequat molestie.
-    Suspendisse auctor enim non odio finibus, et tincidunt felis
-    vulputate.`,
+    description: `After a year of interruption due to the pandemic, I joined as the lead software developer. 
+    I have since been responsible for designing and developing an MVP mobile app and a web page to demonstrate the company's business model.
+    In addition, I compiled most of the market research later used in the investment pitch decks, which  I also structured and co-authored.`,
     small: false,
   },
   {
-    label: "Full-Stack MVP development",
-    subtitle: "2019",
-    description: `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`,
+    label: "MVP app",
+    subtitle: "",
+    description: `The MVP consists of a full-stack mobile application built in React Native using typescript, for iOS and Android. It's a step-tracking fitness app with high user-incentive and rich social features.
+    UX is designed with accessibility and simplicity as core values, together with a colourful and intuitive UI. It utilizes NoSQL MongoDB Atlas for its database and Firebase for the backend and user authentication.   `,
     small: true,
   },
   {
-    label: "Website development",
-    subtitle: "2019",
-    description: `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`,
+    label: "Website",
+    subtitle: "",
+    description: `A static, responsive and interactive react website that showcases the different value propositions and business models of the company. It's built with NextJS using typescript and utilizes Material-UI for increased composability in its components.`,
     small: true,
   },
   {
     label: "Pitch deck",
-    subtitle: "2019",
-    description: `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`,
+    subtitle: "",
+    description: `Upon deployment of both the MVP and web app, I undertook most of the research associated with market size/validation, direct competitors and future projections, which later led to the creation of several pitch decks based on these analyses.`,
     small: true,
   },
 ];
@@ -80,7 +67,7 @@ const ColorlibStepIconRoot = styled("div")<{
   ownerState: { active?: boolean };
 }>(({ theme, ownerState }) => ({
   backgroundColor:
-    theme.palette.mode === "dark" ? theme.palette.grey[700] : "#ccc",
+    theme.palette.mode === "dark" ? theme.palette.grey[700] : "rgb(0,0,0,0.15)",
   zIndex: 1,
   color: "#fff",
   width: 50,
@@ -235,7 +222,7 @@ const Work: NextPage = () => {
       mr="auto"
       my={"50px"}
       px={"20px"}
-      sx={{ background: theme.palette.primary.main }}
+      sx={{ background: theme.palette.background.default }}
     >
       <Paper
         sx={{
@@ -273,7 +260,7 @@ const Work: NextPage = () => {
                 sx={{
                   color: (theme) => theme.palette.primary.dark,
                   mr: 1,
-                  pb: "6px",
+                  pb: "10px",
                 }}
                 variant="h5"
                 fontWeight={"500"}
@@ -281,13 +268,14 @@ const Work: NextPage = () => {
                 Walk4Money
               </Typography>
             </Link>
-            <Link href={"https://walk4money.app"}>
-              <Launch
-                sx={{
-                  alignSelf: "bottom",
-                  color: theme.palette.primary.dark,
-                }}
-              />
+            <Link
+              sx={{
+                alignSelf: "center",
+                color: theme.palette.primary.dark,
+              }}
+              href={"https://walk4money.app"}
+            >
+              <Launch />
             </Link>
           </Stack>
           <VerticalLinearStepper></VerticalLinearStepper>
