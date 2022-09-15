@@ -36,7 +36,7 @@ const Films: NextPage = ({}) => {
       mr="auto"
       my={"50px"}
       px={"20px"}
-      sx={{ background: theme.palette.primary.main }}
+      sx={{ background: theme.palette.background.default }}
     >
       <Box
         sx={{
@@ -65,7 +65,7 @@ const Films: NextPage = ({}) => {
           </Box>
           <Typography
             sx={{
-              color: (theme) => theme.palette.primary.dark,
+              color: (theme) => theme.palette.text.primary,
             }}
             variant="h6"
             fontWeight={"300"}
@@ -74,7 +74,7 @@ const Films: NextPage = ({}) => {
           </Typography>
           <Typography
             sx={{
-              color: (theme) => theme.palette.primary.dark,
+              color: (theme) => theme.palette.text.primary,
             }}
             variant="h6"
             fontWeight={"300"}
@@ -83,7 +83,7 @@ const Films: NextPage = ({}) => {
           </Typography>
           <Typography
             sx={{
-              color: (theme) => theme.palette.primary.dark,
+              color: (theme) => theme.palette.text.primary,
             }}
             variant="h6"
             fontWeight={"300"}

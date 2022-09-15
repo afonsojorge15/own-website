@@ -33,8 +33,17 @@ const NavBarItemContainer: FC<LinkableItem & { isActive: boolean }> = ({
   isActive,
   left,
 }) => {
+  const theme = useTheme();
+
   return (
-    <Box mx={0}>
+    <Box
+      mx={0}
+      sx={{
+        "&:hover > *": {
+          color: theme.palette.primary.contrastText,
+        },
+      }}
+    >
       <Typography
         onClick={() => Router.push(href)}
         variant="body1"
@@ -42,6 +51,7 @@ const NavBarItemContainer: FC<LinkableItem & { isActive: boolean }> = ({
         sx={{
           cursor: "pointer",
           fontWeight: isActive ? 800 : 400,
+          letterSpacing: "0.020rem",
           px: "2rem",
           borderLeftColor: "hsl(0, 0%, 74.11764705882354%, 0.4)",
           borderLeftStyle: "solid",
@@ -49,6 +59,7 @@ const NavBarItemContainer: FC<LinkableItem & { isActive: boolean }> = ({
             borderLeftStyle: "none",
           }),
           borderLeftWidth: "0.5px",
+          color: theme.palette.text.primary,
         }}
       >
         {title}
@@ -56,7 +67,9 @@ const NavBarItemContainer: FC<LinkableItem & { isActive: boolean }> = ({
     </Box>
   );
 };
-const MobileMenu: React.FC = () => {
+const MobileMenu: React.FC<{ path: string }> = ({ path }) => {
+  const theme = useTheme();
+
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
@@ -104,8 +117,20 @@ const MobileMenu: React.FC = () => {
               setAnchorElUser(null);
               Router.push(item.href);
             }}
+            sx={{
+              "&:hover > *": {
+                color: theme.palette.primary.contrastText,
+              },
+            }}
           >
-            <Typography textAlign="center" variant="body1" fontFamily="Roboto">
+            <Typography
+              color={theme.palette.text.primary}
+              textAlign="center"
+              variant="body1"
+              fontFamily="Roboto"
+              fontWeight={path === item.href ? 800 : 400}
+              letterSpacing="0.025em"
+            >
               <Link href={item.href}>{item.title}</Link>
             </Typography>
           </MenuItem>
@@ -137,11 +162,22 @@ const NavBar: React.FC = () => {
         zIndex: 1,
       }}
     >
-      <Box display="flex" height="inherit" minWidth="6rem" alignItems="center">
+      <Box
+        display="flex"
+        height="inherit"
+        minWidth="6rem"
+        alignItems="center"
+        sx={{
+          "&:hover > *": {
+            color: theme.palette.primary.contrastText,
+          },
+        }}
+      >
         <Typography
           sx={{
             cursor: "pointer",
             fontWeight: pathname === "/" ? 800 : 400,
+            letterSpacing: "0.025rem",
           }}
           variant="body1"
           fontFamily="Roboto"
@@ -160,7 +196,7 @@ const NavBar: React.FC = () => {
           alignItems="center"
           justifyContent="end"
         >
-          <MobileMenu></MobileMenu>
+          <MobileMenu path={pathname}></MobileMenu>
         </Box>
       ) : (
         <>
@@ -189,11 +225,17 @@ const NavBar: React.FC = () => {
             height="inherit"
             minWidth="6rem"
             alignItems="center"
+            sx={{
+              "&:hover > *": {
+                color: theme.palette.primary.contrastText,
+              },
+            }}
           >
             <Typography
               sx={{
                 cursor: "pointer",
                 fontWeight: pathname === "/" ? 800 : 400,
+                color: theme.palette.text.primary,
               }}
               onClick={() => {
                 Router.push("/");

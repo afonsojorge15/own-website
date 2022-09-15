@@ -42,7 +42,7 @@ const Home: NextPage = () => {
       mr="auto"
       my={"50px"}
       px={"20px"}
-      sx={{ background: theme.palette.primary.main }}
+      sx={{ background: theme.palette.background.default }}
     >
       <Paper
         sx={{
@@ -98,8 +98,8 @@ const Home: NextPage = () => {
                   color: (theme) => theme.palette.primary.dark,
                   pb: "5px",
                 }}
-                variant="h6"
-                fontWeight={"500"}
+                variant="body1"
+                fontWeight={"600"}
               >
                 LinkedIn
               </Typography>
@@ -129,8 +129,8 @@ const Home: NextPage = () => {
                   color: (theme) => theme.palette.primary.dark,
                   pb: "5px",
                 }}
-                variant="h6"
-                fontWeight={"500"}
+                variant="body1"
+                fontWeight={"600"}
               >
                 GitHub
               </Typography>
@@ -160,13 +160,50 @@ const Home: NextPage = () => {
                   color: (theme) => theme.palette.primary.dark,
                   pb: "5px",
                 }}
-                variant="h6"
-                fontWeight={"500"}
+                variant="body1"
+                fontWeight={"600"}
               >
                 afonso.matos.jorge@gmail.com
               </Typography>
             </Link>
           </Stack>
+        </Box>
+      </Paper>
+      <Paper
+        sx={{
+          display: "block",
+          width: "100%",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          px: "30px",
+          py: "30px",
+          background: theme.palette.primary.light,
+          boxShadow: 2,
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: isSmall ? "left" : "center",
+          }}
+        >
+          <Typography
+            sx={{
+              color: (theme) => theme.palette.primary.dark,
+            }}
+            variant="body1"
+            fontWeight={"400"}
+          >
+            *If you have any suggestions or you come across any bugs, please
+            email me or submit an issue on the repo. My goal with this website
+            is to create a simple, modern-looking and easily modifiable personal
+            website for anyone interested. (After a lot of refactoring)
+          </Typography>
         </Box>
       </Paper>
     </Box>

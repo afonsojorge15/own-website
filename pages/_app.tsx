@@ -1,16 +1,17 @@
 import "../styles/globals.css";
-import { CacheProvider, EmotionCache } from "@emotion/react";
+import { CacheProvider, EmotionCache, useTheme } from "@emotion/react";
 import type { AppProps } from "next/app";
 import createEmotionCache from "../lib/createEmotionCache";
 import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "../lib/theme";
+import { responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import { createContext, useMemo, useState } from "react";
 import NavBar from "../components/NavBar";
+import React from "react";
+import { createCustomTheme } from "../lib/theme";
 
 const clientSideEmotionCache = createEmotionCache();
 
-//export const themeDarkContext = createContext(true);
+const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 type MyAppProps = {
   emotionCache?: EmotionCache;
@@ -21,9 +22,13 @@ function MyApp({
   pageProps,
   emotionCache = clientSideEmotionCache,
 }: MyAppProps) {
+  const theme = useMemo(() => createCustomTheme({ light: true }), []);
+
+  const theme1 = responsiveFontSizes(theme);
+
   return (
     <CacheProvider value={emotionCache}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme1}>
         <CssBaseline />
         <NavBar />
         <Component {...pageProps} />
