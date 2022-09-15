@@ -51,7 +51,7 @@ const Work: NextPage = () => {
       sx={{ background: theme.palette.background.default }}
     >
       {WorkData.map((item) => (
-        <AccordionWithLink props={item} />
+        <AccordionWithLink key={item.title} props={item} />
       ))}
     </Box>
   );
