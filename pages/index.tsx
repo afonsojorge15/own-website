@@ -212,7 +212,7 @@ const Home: NextPage = ({}) => {
           </Stack>
         </Box>
       </Box>
-      <Divider />
+      <Divider sx={{ borderColor: theme.palette.primary.contrastText }} />
 
       <Paper
         elevation={2}
@@ -241,7 +241,7 @@ const Home: NextPage = ({}) => {
         >
           <Typography
             sx={{
-              color: (theme) => theme.palette.primary.dark,
+              color: (theme) => theme.palette.primary.contrastText,
               textAlign: "left",
               mb: 2,
             }}
@@ -293,7 +293,7 @@ const Home: NextPage = ({}) => {
             fontWeight={"400"}
           >
             <ArrowCircleRightOutlinedIcon
-              sx={{ mb: "-5px" }}
+              sx={{ mb: "-6px" }}
             ></ArrowCircleRightOutlinedIcon>
             {""} Currently not based in London but you can help me change that.
             If you&apos;re currently hiring Full-stack / Front-end developers,

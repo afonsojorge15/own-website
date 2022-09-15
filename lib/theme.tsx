@@ -11,7 +11,7 @@ export const createCustomTheme = (params: { light: boolean }) => {
       main: "#f4f4f4",
       dark: "#000000",
       light: "#ffffff",
-      contrastText: "#331D49",
+      contrastText: "#3C2358",
     },
     background: {
       default: light ? "#f4f4f4" : "#454545",
@@ -85,7 +85,7 @@ export const createCustomTheme = (params: { light: boolean }) => {
         styleOverrides: {
           root: {
             fontWeight: 500,
-            borderWidth: "2px",
+            borderWidth: "1px",
             color: palette.text?.primary,
             borderColor: palette.primary?.contrastText,
             "& .MuiChip-icon": {

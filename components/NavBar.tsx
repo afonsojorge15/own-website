@@ -50,7 +50,7 @@ const NavBarItemContainer: FC<LinkableItem & { isActive: boolean }> = ({
         fontFamily="Roboto"
         sx={{
           cursor: "pointer",
-          fontWeight: isActive ? 600 : 400,
+          fontWeight: isActive ? 800 : 400,
           letterSpacing: "0.020rem",
           px: "2rem",
           borderLeftColor: "hsl(0, 0%, 74.11764705882354%, 0.4)",
@@ -128,7 +128,7 @@ const MobileMenu: React.FC<{ path: string }> = ({ path }) => {
               textAlign="center"
               variant="body1"
               fontFamily="Roboto"
-              fontWeight={path === item.href ? 600 : 400}
+              fontWeight={path === item.href ? 800 : 400}
               letterSpacing="0.025em"
             >
               <Link href={item.href}>{item.title}</Link>
@@ -176,7 +176,7 @@ const NavBar: React.FC = () => {
         <Typography
           sx={{
             cursor: "pointer",
-            fontWeight: pathname === "/" ? 600 : 400,
+            fontWeight: pathname === "/" ? 800 : 400,
             letterSpacing: "0.025rem",
           }}
           variant="body1"
