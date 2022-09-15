@@ -11,11 +11,11 @@ export const createCustomTheme = (params: { light: boolean }) => {
       main: "#f4f4f4",
       dark: "#000000",
       light: "#ffffff",
-      contrastText: "#5C3483",
+      contrastText: "#331D49",
     },
     background: {
       default: light ? "#f4f4f4" : "#454545",
-      paper: light ? "regb(0,0,0,0.1) " : "#454545",
+      paper: light ? "rgb(0,0,0,0.1) " : "#454545",
     },
     text: {
       primary: light
@@ -85,10 +85,11 @@ export const createCustomTheme = (params: { light: boolean }) => {
         styleOverrides: {
           root: {
             fontWeight: 500,
-            color: palette.text?.secondary,
-            backgroundColor: palette.primary?.contrastText,
+            borderWidth: "2px",
+            color: palette.text?.primary,
+            borderColor: palette.primary?.contrastText,
             "& .MuiChip-icon": {
-              color: palette.text?.secondary,
+              color: palette.text?.primary,
             },
           },
         },
