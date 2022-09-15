@@ -15,11 +15,15 @@ import {
   styled,
   Divider,
   keyframes,
+  Hidden,
 } from "@mui/material";
 import type { NextPage } from "next";
 import { LinkableItem } from "../components/NavBar";
 import React, { FC } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import ProfilePic from "../public/smallPic2.jpg";
+import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 
 type ChipItem = {
   title: string;
@@ -40,24 +44,23 @@ const ContactLink = styled("a")`
 `;
 
 const ColorlibStepIconRoot = styled("div")(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === "dark" ? theme.palette.grey[700] : "rgb(0,0,0,0.15)",
-  zIndex: 1,
-  color: "#fff",
+  position: "relative",
+  display: "inline-block",
+  borderRadius: "50%",
+  overflow: "hidden",
+  borderColor: theme.palette.primary.contrastText,
+  borderWidth: "1px",
+  borderStyle: "solid",
   [theme.breakpoints.down("sm")]: {
-    width: "9rem",
-    height: "9rem",
+    width: "11rem",
+    height: "11rem",
   },
   [theme.breakpoints.only("sm")]: {
-    width: "10.5rem",
-    height: "10.5rem",
+    width: "11.7rem",
+    height: "11.7rem",
   },
-  width: "11rem",
-  height: "11rem",
-
-  borderRadius: "50%",
-  justifyContent: "center",
-  alignItems: "center",
+  width: "12rem",
+  height: "12rem",
 }));
 
 const Home: NextPage = ({}) => {
@@ -114,7 +117,9 @@ const Home: NextPage = ({}) => {
           alignItems={isSmall ? "center" : "left"}
         >
           {" "}
-          <ColorlibStepIconRoot />
+          <ColorlibStepIconRoot>
+            <Image layout="intrinsic" alt="picture" src={ProfilePic}></Image>
+          </ColorlibStepIconRoot>
         </Box>
         <Box
           sx={{
@@ -196,7 +201,12 @@ const Home: NextPage = ({}) => {
           >
             {ChipItemList.map((item, key) => (
               <Box key={key} pb={3} pr={isSmall ? 1 : 3} pl={isSmall ? 1 : 0}>
-                <Chip key={key} icon={<DoneIcon />} label={item.title} />
+                <Chip
+                  key={key}
+                  variant="outlined"
+                  icon={<DoneIcon />}
+                  label={item.title}
+                />
               </Box>
             ))}
           </Stack>
@@ -269,11 +279,8 @@ const Home: NextPage = ({}) => {
       >
         <Box
           sx={{
-            display: "flex",
+            display: "inline",
             width: "100%",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
             textAlign: "center",
           }}
         >
@@ -285,9 +292,12 @@ const Home: NextPage = ({}) => {
             variant="body1"
             fontWeight={"400"}
           >
-            *Currently not based in London but you can help me change that. If
-            you&apos;re currently hiring Full-stack / Front-end developers, fell
-            free to{" "}
+            <ArrowCircleRightOutlinedIcon
+              sx={{ mb: "-5px" }}
+            ></ArrowCircleRightOutlinedIcon>
+            {""} Currently not based in London but you can help me change that.
+            If you&apos;re currently hiring Full-stack / Front-end developers,
+            fell free to{" "}
             <Link href="/contact">
               <ContactLink>contact me</ContactLink>
             </Link>
