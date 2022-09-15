@@ -6,27 +6,26 @@ import {
   Box,
   Chip,
   Container,
-  Link,
   ListItem,
   Paper,
   Stack,
+  styled,
   Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import type { NextPage } from "next";
+import ShortcutRoundedIcon from "@mui/icons-material/ShortcutRounded";
+import Link from "next/link";
 
-type ChipItem = {
-  title: string;
-};
-
-const ChipItemList: ChipItem[] = [
-  { title: "Nodejs" },
-  { title: "Nextjs" },
-  { title: "Typescript" },
-  { title: "React Native" },
-  { title: "SQL" },
-];
+const ContactLink = styled("a")(({ theme }) => ({
+  textDecoration: "underline",
+  cursor: "pointer",
+  fontStyle: "italic",
+  "&:hover": {
+    color: theme.palette.primary.contrastText,
+  },
+}));
 
 const Home: NextPage = () => {
   let theme = useTheme();
@@ -83,6 +82,12 @@ const Home: NextPage = () => {
             textAlign={"left"}
             display="flex"
             mt={3}
+            sx={{
+              "&:hover > *": {
+                color: theme.palette.primary.contrastText,
+                cursor: "pointer",
+              },
+            }}
           >
             <Link href={"https://www.linkedin.com/in/afonso-jorge-a27708240/"}>
               <LinkedIn
@@ -96,7 +101,6 @@ const Home: NextPage = () => {
               <Typography
                 sx={{
                   color: (theme) => theme.palette.primary.dark,
-                  pb: "5px",
                 }}
                 variant="body1"
                 fontWeight={"600"}
@@ -113,6 +117,12 @@ const Home: NextPage = () => {
             textAlign={"left"}
             display="flex"
             mt={1}
+            sx={{
+              "&:hover > *": {
+                color: theme.palette.primary.contrastText,
+                cursor: "pointer",
+              },
+            }}
           >
             <Link href={"https://github.com/afonsojorge15"}>
               <GitHub
@@ -127,7 +137,6 @@ const Home: NextPage = () => {
               <Typography
                 sx={{
                   color: (theme) => theme.palette.primary.dark,
-                  pb: "5px",
                 }}
                 variant="body1"
                 fontWeight={"600"}
@@ -144,6 +153,12 @@ const Home: NextPage = () => {
             textAlign={"left"}
             display="flex"
             mt={1}
+            sx={{
+              "&:hover > *": {
+                color: theme.palette.primary.contrastText,
+                cursor: "pointer",
+              },
+            }}
           >
             <Link href={"https://github.com/afonsojorge15"}>
               <Email
@@ -158,7 +173,7 @@ const Home: NextPage = () => {
               <Typography
                 sx={{
                   color: (theme) => theme.palette.primary.dark,
-                  pb: "5px",
+                  pb: "0px",
                 }}
                 variant="body1"
                 fontWeight={"600"}
@@ -184,12 +199,9 @@ const Home: NextPage = () => {
       >
         <Box
           sx={{
-            display: "flex",
+            display: "inline",
             width: "100%",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            textAlign: isSmall ? "left" : "center",
+            textAlign: "center",
           }}
         >
           <Typography
@@ -199,10 +211,17 @@ const Home: NextPage = () => {
             variant="body1"
             fontWeight={"400"}
           >
-            *If you have any suggestions or you come across any bugs, please
-            email me or submit an issue on the repo. My goal with this website
-            is to create a simple, modern-looking and easily modifiable personal
-            website for anyone interested. (After a lot of refactoring)
+            <ShortcutRoundedIcon sx={{ mb: "-6px" }}></ShortcutRoundedIcon> If
+            you have any suggestions or you come across any bugs, please email
+            me or submit an issue on the{" "}
+            <Link href="https://github.com/afonsojorge15/own-website/issues">
+              <ContactLink href="https://github.com/afonsojorge15/own-website/issues">
+                repository.
+              </ContactLink>
+            </Link>{" "}
+            My goal with this website is to create a simple, modern-looking and
+            easily modifiable personal website for anyone interested. (After a
+            lot of refactoring).
           </Typography>
         </Box>
       </Paper>
@@ -211,3 +230,42 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+/*        <Box
+          sx={{
+            display: "inline",
+            width: "100%",
+            textAlign: "center",
+            flewDirection: "row",
+          }}
+        >
+          <Typography
+            sx={{
+              color: (theme) => theme.palette.primary.dark,
+            }}
+            variant="body1"
+            fontWeight={"400"}
+          >
+            If you have any suggestions or you come across any bugs, please
+            email me or submit an issue on the{" "}
+          </Typography>
+          <Link href="https://github.com/afonsojorge15/own-website/issues">
+            <ContactLink
+              sx={{
+                color: (theme) => theme.palette.primary.dark,
+              }}
+            >
+              repository{" "}
+            </ContactLink>
+          </Link>
+          <Typography
+            sx={{
+              color: (theme) => theme.palette.primary.dark,
+            }}
+            variant="body1"
+            fontWeight={"400"}
+          >
+            My goal with this website is to create a simple, modern-looking and
+            easily modifiable personal website for anyone interested. (After a
+            lot of refactoring).
+          </Typography>
+        </Box>*/

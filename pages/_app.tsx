@@ -1,13 +1,13 @@
 import "../styles/globals.css";
 import { CacheProvider, EmotionCache, useTheme } from "@emotion/react";
 import type { AppProps } from "next/app";
-import createEmotionCache from "../lib/createEmotionCache";
+import createEmotionCache from "../src/lib/createEmotionCache";
 import CssBaseline from "@mui/material/CssBaseline";
 import { responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import { createContext, useMemo, useState } from "react";
 import NavBar from "../components/NavBar";
 import React from "react";
-import { createCustomTheme } from "../lib/theme";
+import { createCustomTheme } from "../src/lib/theme";
 
 const clientSideEmotionCache = createEmotionCache();
 

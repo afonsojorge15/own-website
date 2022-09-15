@@ -230,20 +230,7 @@ const NavBar: React.FC = () => {
                 color: theme.palette.primary.contrastText,
               },
             }}
-          >
-            <Typography
-              sx={{
-                cursor: "pointer",
-                fontWeight: pathname === "/" ? 800 : 400,
-                color: theme.palette.text.primary,
-              }}
-              onClick={() => {
-                Router.push("/");
-              }}
-            >
-              Afonso Jorge
-            </Typography>
-          </Box>
+          ></Box>
         </>
       )}
     </Box>

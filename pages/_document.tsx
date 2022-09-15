@@ -6,7 +6,7 @@ import Document, {
   NextScript,
 } from "next/document";
 import React from "react";
-import createEmotionCache from "../lib/createEmotionCache";
+import createEmotionCache from "../src/lib/createEmotionCache";
 import createEmotionServer from "@emotion/server/create-instance";
 
 export default class MyDocument extends Document {
