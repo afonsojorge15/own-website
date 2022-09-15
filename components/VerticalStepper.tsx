@@ -88,7 +88,7 @@ function ColorlibSmallStepIcon(props: StepIconProps) {
 export const VerticalLinearStepper: React.FC<{ props: Array<StepperData> }> = ({
   props,
 }) => {
-  const [activeStep, setActiveStep] = React.useState(-1);
+  const [activeStep, setActiveStep] = React.useState(0);
 
   const handleStep = (step: number) => () => {
     setActiveStep(step);
