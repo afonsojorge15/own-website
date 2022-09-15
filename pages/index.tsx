@@ -22,7 +22,7 @@ import { LinkableItem } from "../components/NavBar";
 import React, { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import ProfilePic from "../public/smallPic2.jpg";
+import ProfilePic from "../public/profilePicture.jpg";
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 
 type ChipItem = {
