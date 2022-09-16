@@ -36,6 +36,7 @@ import { VerticalLinearStepper } from "./VerticalStepper";
 const CustomizedAccordion = styled(Accordion)(() => ({
   "&.MuiPaper-root": {
     borderRadius: "8px",
+    boxShadow: "0 5px 10px rgba(0,0,0,0.12)",
     borderStyle: "none",
   },
   "&.MuiPaper-root:before": {
@@ -43,26 +44,33 @@ const CustomizedAccordion = styled(Accordion)(() => ({
   },
 }));
 
-export const AccordionWithLink: React.FC<{ props: AccordionData }> = ({
-  props,
-}) => {
+export const AccordionWithLink: React.FC<{
+  props: AccordionData;
+  expanded: string | false;
+  functionExpaded: React.Dispatch<React.SetStateAction<string | false>>;
+}> = ({ props, expanded, functionExpaded }) => {
   let theme = useTheme();
+
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      functionExpaded(isExpanded ? panel : false);
+    };
 
   return (
     <CustomizedAccordion
+      expanded={expanded === props.index}
+      onChange={handleChange(props.index)!}
       sx={{
         display: "block",
         width: "100%",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        px: "40px",
+        px: "30px",
         mb: "1rem",
         background: theme.palette.primary.light,
-        boxShadow: 2,
         py: "15px",
       }}
-      //borderTopLeftRadius="8"
     >
       <AccordionSummary
         sx={{ px: 0, height: "45px" }}

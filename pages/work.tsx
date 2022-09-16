@@ -37,6 +37,7 @@ import { AccordionWithLink } from "../components/AccordionWithLink";
 const Work: NextPage = () => {
   let theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
+  const [expanded, setExpanded] = React.useState<string | false>(false);
 
   return (
     <Box
@@ -51,7 +52,12 @@ const Work: NextPage = () => {
       sx={{ background: theme.palette.background.default }}
     >
       {WorkData.map((item) => (
-        <AccordionWithLink key={item.title} props={item} />
+        <AccordionWithLink
+          key={item.title}
+          functionExpaded={setExpanded}
+          expanded={expanded}
+          props={item}
+        />
       ))}
     </Box>
   );
