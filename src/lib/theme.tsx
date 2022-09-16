@@ -14,7 +14,7 @@ export const createCustomTheme = (params: { light: boolean }) => {
       contrastText: "#3C2358",
     },
     background: {
-      default: light ? "#f4f4f4" : "#454545",
+      default: light ? "rgb(248,249,250,0.99)" : "#454545",
       paper: light ? "rgb(0,0,0,0.1) " : "#454545",
     },
     text: {

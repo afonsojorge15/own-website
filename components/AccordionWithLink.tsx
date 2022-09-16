@@ -62,14 +62,14 @@ export const AccordionWithLink: React.FC<{
       onChange={handleChange(props.index)!}
       sx={{
         display: "block",
-        width: "100%",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        px: "30px",
+        px: "17.5px",
         mb: "1rem",
         background: theme.palette.primary.light,
-        py: "15px",
+        py: "7.5px",
+        maxWidth: "900px",
       }}
     >
       <AccordionSummary

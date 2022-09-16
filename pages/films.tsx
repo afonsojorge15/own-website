@@ -36,7 +36,6 @@ const Films: NextPage = ({}) => {
       mr="auto"
       my={"50px"}
       px={"20px"}
-      sx={{ background: theme.palette.background.default }}
     >
       <Box
         sx={{

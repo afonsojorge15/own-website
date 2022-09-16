@@ -41,7 +41,6 @@ const Home: NextPage = () => {
       mr="auto"
       my={"50px"}
       px={"20px"}
-      sx={{ background: theme.palette.background.default }}
     >
       <Paper
         elevation={2}
