@@ -100,6 +100,9 @@ export const createCustomTheme = (params: { light: boolean }) => {
           root: {
             borderRadius: 8,
           },
+          elevation2: {
+            boxShadow: "0 5px 10px rgba(0,0,0,0.12)",
+          },
         },
       },
       MuiStepLabel: {
@@ -119,7 +122,7 @@ export const createCustomTheme = (params: { light: boolean }) => {
             lineHeight: 1.2,
             fontWeight: 400,
             fontFamily: "Roboto",
-            fontSize: "1rem",
+            fontSize: "1.1rem",
             "&.Mui-active": {
               fontWeight: 500,
             },

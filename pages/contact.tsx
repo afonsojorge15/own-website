@@ -44,6 +44,7 @@ const Home: NextPage = () => {
       sx={{ background: theme.palette.background.default }}
     >
       <Paper
+        elevation={2}
         sx={{
           display: "block",
           width: "100%",
@@ -54,7 +55,6 @@ const Home: NextPage = () => {
           py: "30px",
           mb: "70px",
           background: theme.palette.primary.light,
-          boxShadow: 2,
         }}
       >
         <Box
@@ -185,6 +185,7 @@ const Home: NextPage = () => {
         </Box>
       </Paper>
       <Paper
+        elevation={2}
         sx={{
           display: "block",
           width: "100%",
@@ -194,7 +195,6 @@ const Home: NextPage = () => {
           px: "30px",
           py: "30px",
           background: theme.palette.primary.light,
-          boxShadow: 2,
         }}
       >
         <Box

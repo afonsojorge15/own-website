@@ -258,13 +258,13 @@ const Home: NextPage = ({}) => {
             fontWeight={"400"}
           >
             A modern, responsive, statically-generated react application built
-            with NextJS using typescript. Reusable UI interface built with
-            Material-UI. Soon to implement GraphQL, Apollo and a REST API, as
-            well as Github actions.
+            with NextJS using Typescript. Reusable UI interface built with
+            Material-UI. Soon to implement GraphQL, Apollo and a REST API.
           </Typography>
         </Box>
       </Paper>
       <Paper
+        elevation={2}
         sx={{
           display: "block",
           width: "100%",
@@ -274,7 +274,6 @@ const Home: NextPage = ({}) => {
           px: "30px",
           py: "30px",
           background: theme.palette.primary.light,
-          boxShadow: 2,
         }}
       >
         <Box

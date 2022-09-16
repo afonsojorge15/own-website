@@ -4,6 +4,7 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  Paper,
   SelectChangeEvent,
   Typography,
   useMediaQuery,
@@ -146,8 +147,8 @@ const NavBar: React.FC = () => {
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <Box
-      px={isSmall ? 3 : 3}
+    <Paper
+      elevation={2}
       sx={{
         display: "flex",
         justifyContent: "space-between",
@@ -155,11 +156,10 @@ const NavBar: React.FC = () => {
         width: "100%",
         height: 50,
         background: theme.palette.primary.light,
-        borderBottomColor: "hsl(0, 0%, 74.11764705882354%, 0.5)",
-        borderBottomStyle: "solid",
-        borderBottomWidth: "1px",
         overflow: "hidden",
+        borderRadius: 0,
         zIndex: 1,
+        px: isSmall ? 3 : 3,
       }}
     >
       <Box
@@ -233,7 +233,7 @@ const NavBar: React.FC = () => {
           ></Box>
         </>
       )}
-    </Box>
+    </Paper>
   );
 };
 
