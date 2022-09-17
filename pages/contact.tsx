@@ -31,6 +31,11 @@ const Home: NextPage = () => {
   let theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const copyEmail = async (text: string) => {
+    await navigator.clipboard.writeText(text);
+    alert("Text copied");
+  };
+
   return (
     <Box
       width="100%"
@@ -56,6 +61,15 @@ const Home: NextPage = () => {
           background: theme.palette.primary.light,
         }}
       >
+        <Typography
+          sx={{
+            color: (theme) => theme.palette.primary.dark,
+          }}
+          variant="h3"
+          fontWeight={"600"}
+        >
+          Contacts
+        </Typography>
         <Box
           sx={{
             display: "flex",
@@ -63,17 +77,9 @@ const Home: NextPage = () => {
             flexDirection: "column",
             alignItems: "left",
             justifyContent: "center",
+            overflow: "auto",
           }}
         >
-          <Typography
-            sx={{
-              color: (theme) => theme.palette.primary.dark,
-            }}
-            variant="h3"
-            fontWeight={"600"}
-          >
-            Contacts
-          </Typography>
           <Stack
             alignItems="center"
             flexWrap={"wrap"}
@@ -147,7 +153,6 @@ const Home: NextPage = () => {
           <Stack
             justifyContent={"flex-around"}
             alignItems="center"
-            flexWrap={"wrap"}
             direction={"row"}
             textAlign={"left"}
             display="flex"
@@ -159,21 +164,23 @@ const Home: NextPage = () => {
               },
             }}
           >
-            <Link href={"https://github.com/afonsojorge15"}>
+            <Link href={""}>
               <Email
                 sx={{
                   alignSelf: "bottom",
                   color: theme.palette.primary.dark,
                   mr: 1,
                 }}
+                onClick={() => copyEmail("afonso.matos.jorge@gmail.com")}
               />
             </Link>
-            <Link href={"https://github.com/afonsojorge15"}>
+            <Link href={""}>
               <Typography
                 sx={{
                   color: (theme) => theme.palette.primary.dark,
                   pb: "0px",
                 }}
+                onClick={() => copyEmail("afonso.matos.jorge@gmail.com")}
                 variant="body1"
                 fontWeight={"600"}
               >
