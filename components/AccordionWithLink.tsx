@@ -20,6 +20,7 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  alpha,
 } from "@mui/material";
 import type { NextPage } from "next";
 import * as React from "react";
@@ -36,6 +37,9 @@ import { VerticalLinearStepper } from "./VerticalStepper";
 const CustomizedAccordion = styled(Accordion)(() => ({
   "&.MuiPaper-root": {
     borderRadius: "8px",
+    marginLeft: "auto",
+    marginRight: "auto",
+
     boxShadow: "0 5px 10px rgba(0,0,0,0.12)",
     borderStyle: "none",
   },
@@ -56,24 +60,36 @@ export const AccordionWithLink: React.FC<{
       functionExpaded(isExpanded ? panel : false);
     };
 
+  const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <CustomizedAccordion
       expanded={expanded === props.index}
       onChange={handleChange(props.index)!}
       sx={{
         display: "block",
+        ml: "auto",
+        mr: "auto",
+        textAlign: "left",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        px: "17.5px",
+        px: "1.25rem",
         mb: "1rem",
         background: theme.palette.primary.light,
-        py: "7.5px",
+        py: "5px",
         maxWidth: "900px",
+        minWidth: "245px",
       }}
     >
       <AccordionSummary
-        sx={{ px: 0, height: "45px" }}
+        sx={{
+          px: 0,
+          height: "45px",
+          "&.MuiAccordionSummary-root": {
+            minHeight: "40px",
+          },
+        }}
         expandIcon={
           <ExpandMoreRoundedIcon
             sx={{
@@ -81,6 +97,7 @@ export const AccordionWithLink: React.FC<{
               borderRadius: "50%",
               borderStyle: "solid",
               borderWidth: "1px",
+              fontSize: "1.25rem",
               "&:hover ": {
                 color: theme.palette.primary.contrastText,
               },
@@ -88,35 +105,71 @@ export const AccordionWithLink: React.FC<{
           />
         }
       >
-        <Link
-          underline="none"
-          href={props.ref}
-          onClick={(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
-            e.stopPropagation();
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            flex: isSmall ? 1 : "",
+            width: "38%",
           }}
         >
+          <Link
+            underline="none"
+            sx={{
+              display: "inline-flex",
+              alignItems: "center",
+              flexDirection: "row",
+            }}
+            href={props.ref}
+            onClick={(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+              e.stopPropagation();
+            }}
+          >
+            <Typography
+              sx={{
+                alignItems: "center",
+
+                color: (theme) => theme.palette.primary.dark,
+                textAlign: "center",
+                "&:hover >*": {
+                  color: theme.palette.primary.contrastText,
+                },
+                "&:hover ": {
+                  color: theme.palette.primary.contrastText,
+                },
+              }}
+              variant="h6"
+            >
+              {props.title}
+            </Typography>
+            <Launch
+              sx={{
+                ml: "5px",
+                fontSize: "1.25rem",
+
+                color: theme.palette.primary.dark,
+              }}
+            />
+          </Link>
+        </Box>
+
+        {isSmall ? (
+          <></>
+        ) : (
           <Typography
             sx={{
-              color: (theme) => theme.palette.primary.dark,
-              "&:hover >*": {
-                color: theme.palette.primary.contrastText,
-              },
+              color: alpha(theme.palette.text.primary, 0.5),
+              alignSelf: "center",
+              pr: "0.5em",
               "&:hover ": {
                 color: theme.palette.primary.contrastText,
               },
             }}
-            variant="h5"
-            fontWeight={"500"}
+            variant="body2"
           >
-            {props.title}{" "}
-            <Launch
-              sx={{
-                color: theme.palette.primary.dark,
-                mb: "-4px",
-              }}
-            />
+            {props.subtitle}
           </Typography>
-        </Link>
+        )}
       </AccordionSummary>
       <AccordionDetails sx={{ px: 0, pt: 0, pb: "5px" }}>
         {" "}
