@@ -20,6 +20,8 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Theme,
+  alpha,
 } from "@mui/material";
 import type { NextPage } from "next";
 import * as React from "react";
@@ -39,8 +41,8 @@ const ColorlibStepIconRoot = styled("div")<{
     theme.palette.mode === "dark" ? theme.palette.grey[700] : "rgb(0,0,0,0.15)",
   zIndex: 1,
   color: "#fff",
-  width: 50,
-  height: 50,
+  width: 40,
+  height: 40,
   display: "flex",
   borderRadius: "50%",
   justifyContent: "center",
@@ -52,8 +54,8 @@ const ColorlibStepIconRoot = styled("div")<{
 }));
 
 const ColorlibSmallStepIconRoot = styled(ColorlibStepIconRoot)({
-  width: 30,
-  height: 30,
+  width: 25,
+  height: 25,
 });
 
 function ColorlibStepIcon(props: StepIconProps) {
@@ -88,14 +90,17 @@ function ColorlibSmallStepIcon(props: StepIconProps) {
 export const VerticalLinearStepper: React.FC<{ props: Array<StepperData> }> = ({
   props,
 }) => {
+  let theme = useTheme();
+
   const [activeStep, setActiveStep] = React.useState(0);
+  const isSmall = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
 
   const handleStep = (step: number) => () => {
     setActiveStep(step);
   };
 
   return (
-    <Box>
+    <Box ml="0rem">
       <Stepper
         activeStep={activeStep}
         orientation="vertical"
@@ -113,17 +118,28 @@ export const VerticalLinearStepper: React.FC<{ props: Array<StepperData> }> = ({
                 cursor: "pointer",
                 "& .MuiStepLabel-labelContainer": {
                   transition: "0.3s",
+                  borderStyle: "solid",
+                  borderColor: "transparent",
+                  borderRadius: 2,
+
+                  borderWidth: "0.5px",
+                },
+                "& .MuiStepLabel-label": {
+                  transition: "0.3s",
+                  fontSize: isSmall ? "0.875rem" : "1rem",
                 },
 
                 "& .icon-thing": {
                   transition: "0.2s",
+                  marginLeft: "5px",
                 },
                 "&:hover .MuiStepLabel-labelContainer": {
-                  backgroundColor: "#f4f4f4",
+                  backgroundColor: theme.palette.background.default,
+                  borderColor: "#bdbdbd",
                 },
                 ...(step.small && {
                   "& .icon-thing": {
-                    marginLeft: "10px",
+                    marginLeft: "12px",
                   },
                 }),
                 ...(activeStep === index && {
@@ -132,7 +148,7 @@ export const VerticalLinearStepper: React.FC<{ props: Array<StepperData> }> = ({
                   },
                 }),
                 "&:hover .icon-thing": {
-                  backgroundColor: "#f4f4f4",
+                  backgroundColor: theme.palette.background.default,
                   borderColor: "#bdbdbd",
                   borderStyle: "solid",
                   borderWidth: "0.5px",
@@ -151,7 +167,7 @@ export const VerticalLinearStepper: React.FC<{ props: Array<StepperData> }> = ({
               {step.label}
             </StepLabel>
             <StepContent>
-              <Typography mb="5px" variant="body1">
+              <Typography mb="5px" variant="body2">
                 {step.description}
               </Typography>
             </StepContent>
