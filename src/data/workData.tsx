@@ -10,6 +10,7 @@ export type AccordionData = {
   ref: string;
   data: StepperData[];
   index: string;
+  subtitle: string;
 };
 
 const walk4MoneySteps: Array<StepperData> = [
@@ -53,14 +54,14 @@ const quizzesTutorSteps: Array<StepperData> = [
   {
     label: "Backend - Service implementation, Service and Web Service testing",
     subtitle: "",
-    description: `Developed new features for the web app, specifically the ability to create exams with custom-type questions and answers.
+    description: `TDD approach for implementing new features for a web app, specifically the ability to create exams with custom-type questions and answers.
     Java and XML used to implement the features in the backend. JMeter and Groovy were used in Service and Web Service testing.`,
     small: true,
   },
   {
     label: "Frontend - UI and End-to-End testing",
     subtitle: "",
-    description: `Improved and implemented the interface for setting up exams with custom-type questions and answers, using VueJS. JMeter and Cypress used in UI and End-to-End testing`,
+    description: `Improved and implemented the interface for setting up exams with custom-type questions and answers, using VueJS. JMeter and Cypress used in Unit and End-to-End testing`,
     small: true,
   },
 ];
@@ -91,23 +92,30 @@ export const WorkData: Array<AccordionData> = [
     ref: "https://walk4money.app",
     data: walk4MoneySteps,
     index: "1",
+    subtitle: "A Health FinTech start-up",
   },
+];
+
+export const ProjectData: Array<AccordionData> = [
   {
     title: "QuizzesTutor",
     ref: "https://quizzes-tutor.tecnico.ulisboa.pt",
     data: quizzesTutorSteps,
     index: "2",
+    subtitle: "An online Exam and Test hosting platform",
+  },
+  {
+    title: "Bicloin",
+    ref: "https://github.com/afonsojorge15/DistributedSystems",
+    data: distributedSystemsSteps,
+    index: "3",
+    subtitle: "Bicycle sharing and renting platform",
   },
   {
     title: "PostgreSQL-DB",
     ref: "https://github.com/afonsojorge15/Postgres-Database",
     data: dataBaseSteps,
-    index: "3",
-  },
-  {
-    title: "Distributed Systems",
-    ref: "https://github.com/afonsojorge15/DistributedSystems",
-    data: distributedSystemsSteps,
     index: "4",
+    subtitle: "PL/pgSQL database and UI web app",
   },
 ];
