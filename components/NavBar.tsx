@@ -147,12 +147,15 @@ const NavBar: React.FC = () => {
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <Paper
-      elevation={2}
+    <Box
       sx={{
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+
+        borderBottomStyle: "solid",
+        borderBottomWidth: "0.5px",
+        borderBottomColor: "hsl(0, 0%, 74.11764705882354%, 0.4)",
         width: "100%",
         height: 50,
         background: theme.palette.primary.light,
@@ -233,7 +236,7 @@ const NavBar: React.FC = () => {
           ></Box>
         </>
       )}
-    </Paper>
+    </Box>
   );
 };
 

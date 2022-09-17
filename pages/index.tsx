@@ -99,7 +99,8 @@ const Home: NextPage = ({}) => {
           justifyContent: "center",
           alignItems: "center",
           mb: isSmall ? "2em" : "4em",
-          mt: isSmall ? "3em" : "5em",
+          mt: isSmall ? "3em" : "3em",
+          pt: "1rem",
         }}
       >
         <Box
@@ -125,6 +126,8 @@ const Home: NextPage = ({}) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
+            pl: isSmall ? 0 : "1rem",
+            overflow: "auto",
           }}
           alignItems={isSmall ? "center" : "left"}
           textAlign={isSmall ? "center" : "left"}
@@ -160,7 +163,7 @@ const Home: NextPage = ({}) => {
               variant="h6"
               fontWeight={500}
             >
-              Software &nbsp;
+              Software&nbsp;
             </Typography>
             <Typography
               sx={{
@@ -169,7 +172,7 @@ const Home: NextPage = ({}) => {
               variant="h6"
               fontWeight={500}
             >
-              engineer &nbsp;
+              engineer&nbsp;
             </Typography>
             <Typography
               sx={{
@@ -178,7 +181,7 @@ const Home: NextPage = ({}) => {
               variant="h6"
               fontWeight={500}
             >
-              and &nbsp;
+              and&nbsp;
             </Typography>
             <Typography
               sx={{
@@ -211,7 +214,6 @@ const Home: NextPage = ({}) => {
           </Stack>
         </Box>
       </Box>
-      <Divider sx={{ borderColor: theme.palette.primary.contrastText }} />
 
       <Paper
         elevation={2}
@@ -242,7 +244,7 @@ const Home: NextPage = ({}) => {
             sx={{
               color: (theme) => theme.palette.primary.contrastText,
               textAlign: "left",
-              mb: 2,
+              mb: 1,
             }}
             variant="h6"
             fontWeight={"500"}
@@ -295,7 +297,7 @@ const Home: NextPage = ({}) => {
             ></ArrowCircleRightOutlinedIcon>
             {""} Currently not based in London but you can help me change that.
             If you&apos;re currently hiring Full-stack / Front-end developers,
-            fell free to{" "}
+            feel free to{" "}
             <Link href="/contact">
               <ContactLink>contact me</ContactLink>
             </Link>

@@ -37,28 +37,11 @@ export const createCustomTheme = (params: { light: boolean }) => {
     components: {
       MuiTypography: {
         styleOverrides: {
-          h1: {
-            fontSize: "3rem",
-            fontWeight: 600,
-          },
-          h2: {
-            fontSize: "2.5rem",
-          },
-          h3: {
-            fontSize: "2rem",
-          },
-          h4: {
-            fontSize: "1.75rem",
-          },
-          h5: {
-            fontSize: "1.5rem",
-          },
-          h6: {
-            fontSize: "1.25rem",
-          },
           body1: {
             fontFamily: "Open Sans",
-            fontSize: "1rem",
+          },
+          body2: {
+            fontFamily: "Open Sans",
           },
         },
       },
@@ -114,15 +97,14 @@ export const createCustomTheme = (params: { light: boolean }) => {
             paddingLeft: 7,
             paddingRight: 7,
             borderRadius: 7,
-            paddingTop: 5,
-            paddingBottom: 3,
+            paddingTop: 3,
+            paddingBottom: 1,
             color: palette.text?.primary,
           },
           label: {
             lineHeight: 1.2,
             fontWeight: 400,
             fontFamily: "Roboto",
-            fontSize: "1.1rem",
             "&.Mui-active": {
               fontWeight: 500,
             },
