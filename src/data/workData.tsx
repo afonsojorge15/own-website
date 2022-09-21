@@ -1,3 +1,6 @@
+import { LaunchRounded } from "@mui/icons-material";
+import { CustomLinkData } from "../../components/CustomLink";
+
 export type StepperData = {
   label: string;
   subtitle: string;
@@ -6,11 +9,34 @@ export type StepperData = {
 };
 
 export type AccordionData = {
-  title: string;
-  ref: string;
+  link: CustomLinkData;
   data: StepperData[];
   index: string;
   subtitle: string;
+};
+
+const W4MCustomLinkProps: CustomLinkData = {
+  title: "Walk4Money",
+  reference: "https://walk4money.app",
+  icon: LaunchRounded,
+};
+
+const QuizzesTutorCustomLinkProps: CustomLinkData = {
+  title: "QuizzesTutor",
+  reference: "https://quizzes-tutor.tecnico.ulisboa.pt",
+  icon: LaunchRounded,
+};
+
+const BicloinCustomLinkProps: CustomLinkData = {
+  title: "Bicloin",
+  reference: "https://github.com/afonsojorge15/DistributedSystems",
+  icon: LaunchRounded,
+};
+
+const DBCustomLinkProps: CustomLinkData = {
+  title: "PostgreSQL-DB",
+  reference: "https://github.com/afonsojorge15/Postgres-Database",
+  icon: LaunchRounded,
 };
 
 const walk4MoneySteps: Array<StepperData> = [
@@ -88,8 +114,7 @@ const distributedSystemsSteps: Array<StepperData> = [
 
 export const WorkData: Array<AccordionData> = [
   {
-    title: "Walk4Money",
-    ref: "https://walk4money.app",
+    link: W4MCustomLinkProps,
     data: walk4MoneySteps,
     index: "1",
     subtitle: "A Health FinTech start-up",
@@ -98,22 +123,22 @@ export const WorkData: Array<AccordionData> = [
 
 export const ProjectData: Array<AccordionData> = [
   {
-    title: "QuizzesTutor",
-    ref: "https://quizzes-tutor.tecnico.ulisboa.pt",
+    link: QuizzesTutorCustomLinkProps,
+
     data: quizzesTutorSteps,
     index: "2",
     subtitle: "An online Exam and Test hosting platform",
   },
   {
-    title: "Bicloin",
-    ref: "https://github.com/afonsojorge15/DistributedSystems",
+    link: BicloinCustomLinkProps,
+
     data: distributedSystemsSteps,
     index: "3",
     subtitle: "Bicycle sharing and renting platform",
   },
   {
-    title: "PostgreSQL-DB",
-    ref: "https://github.com/afonsojorge15/Postgres-Database",
+    link: DBCustomLinkProps,
+
     data: dataBaseSteps,
     index: "4",
     subtitle: "PL/pgSQL database and UI web app",

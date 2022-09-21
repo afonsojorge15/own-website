@@ -1,4 +1,4 @@
-import { Launch, PublicRounded } from "@mui/icons-material";
+import { Launch, LaunchRounded, PublicRounded } from "@mui/icons-material";
 import {
   Box,
   Chip,
@@ -33,6 +33,7 @@ import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import Router from "next/router";
 import { AccordionData } from "../src/data/workData";
 import { VerticalLinearStepper } from "./VerticalStepper";
+import CustomLink, { CustomLinkData } from "./CustomLink";
 
 const CustomizedAccordion = styled(Accordion)(() => ({
   "&.MuiPaper-root": {
@@ -48,11 +49,12 @@ const CustomizedAccordion = styled(Accordion)(() => ({
   },
 }));
 
-export const AccordionWithLink: React.FC<{
+const AccordionWithLink: React.FC<{
   props: AccordionData;
   expanded: string | false;
   functionExpaded: React.Dispatch<React.SetStateAction<string | false>>;
-}> = ({ props, expanded, functionExpaded }) => {
+  link: CustomLinkData;
+}> = ({ props, expanded, functionExpaded, link }) => {
   let theme = useTheme();
 
   const handleChange =
@@ -113,44 +115,11 @@ export const AccordionWithLink: React.FC<{
             width: "38%",
           }}
         >
-          <Link
-            underline="none"
-            sx={{
-              display: "inline-flex",
-              alignItems: "center",
-              flexDirection: "row",
-            }}
-            href={props.ref}
-            onClick={(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
-              e.stopPropagation();
-            }}
-          >
-            <Typography
-              sx={{
-                alignItems: "center",
-
-                color: (theme) => theme.palette.primary.dark,
-                textAlign: "center",
-                "&:hover >*": {
-                  color: theme.palette.primary.contrastText,
-                },
-                "&:hover ": {
-                  color: theme.palette.primary.contrastText,
-                },
-              }}
-              variant="h6"
-            >
-              {props.title}
-            </Typography>
-            <Launch
-              sx={{
-                ml: "5px",
-                fontSize: "1.25rem",
-
-                color: theme.palette.primary.dark,
-              }}
-            />
-          </Link>
+          <CustomLink
+            title={link.title}
+            reference={link.reference}
+            icon={link.icon}
+          />
         </Box>
 
         {isSmall ? (
@@ -178,3 +147,5 @@ export const AccordionWithLink: React.FC<{
     </CustomizedAccordion>
   );
 };
+
+export default AccordionWithLink;
