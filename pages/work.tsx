@@ -1,4 +1,4 @@
-import { Launch, PublicRounded } from "@mui/icons-material";
+import { Launch, LaunchRounded, PublicRounded } from "@mui/icons-material";
 import {
   Box,
   Chip,
@@ -25,7 +25,8 @@ import type { NextPage } from "next";
 import * as React from "react";
 import { ProjectData, WorkData } from "../src/data/workData";
 import { VerticalLinearStepper } from "../components/VerticalStepper";
-import { AccordionWithLink } from "../components/AccordionWithLink";
+import AccordionWithLink from "../components/AccordionWithLink";
+import { CustomLinkData } from "../components/CustomLink";
 
 const Work: NextPage = () => {
   let theme = useTheme();
@@ -61,10 +62,11 @@ const Work: NextPage = () => {
         </Typography>
         {WorkData.map((item) => (
           <AccordionWithLink
-            key={item.title}
+            key={item.link.title}
             functionExpaded={setExpanded}
             expanded={expanded}
             props={item}
+            link={item.link}
           />
         ))}
       </Box>
@@ -82,10 +84,11 @@ const Work: NextPage = () => {
       </Typography>{" "}
       {ProjectData.map((item) => (
         <AccordionWithLink
-          key={item.title}
+          key={item.link.title}
           functionExpaded={setExpanded}
           expanded={expanded}
           props={item}
+          link={item.link}
         />
       ))}
     </Box>
