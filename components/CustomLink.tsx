@@ -4,16 +4,6 @@ import {
   Chip,
   Container,
   Link,
-  ListItem,
-  Paper,
-  Stack,
-  StepConnector,
-  stepConnectorClasses,
-  StepLabel,
-  stepLabelClasses,
-  stepContentClasses,
-  StepContent,
-  styled,
   Typography,
   useMediaQuery,
   useTheme,
@@ -38,50 +28,100 @@ export type CustomLinkData = {
     muiName: string;
   };
   sx?: SxProps<Theme> | undefined;
+  left?: boolean;
 };
 
-const CustomLink: React.FC<CustomLinkData> = ({ title, reference, icon }) => {
+const CustomLink: React.FC<CustomLinkData> = ({
+  title,
+  reference,
+  icon,
+  left,
+}) => {
   let theme = useTheme();
 
   return (
-    <Link
-      underline="none"
-      sx={{
-        display: "inline-flex",
-        alignItems: "center",
-        flexDirection: "row",
-      }}
-      href={reference}
-      onClick={(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
-        e.stopPropagation();
-      }}
-    >
-      <Typography
-        sx={{
-          alignItems: "center",
+    <>
+      {left ? (
+        <Link
+          underline="none"
+          sx={{
+            display: "inline-flex",
+            alignItems: "center",
+            flexDirection: "row",
+            "&:hover > *": {
+              color: theme.palette.primary.contrastText,
+            },
+            "&:hover ": {
+              color: theme.palette.primary.contrastText,
+            },
+          }}
+          href={reference}
+          onClick={(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+            e.stopPropagation();
+          }}
+        >
+          <Typography
+            sx={{
+              alignItems: "center",
 
-          color: (theme) => theme.palette.primary.dark,
-          textAlign: "center",
-          "&:hover >*": {
-            color: theme.palette.primary.contrastText,
-          },
-          "&:hover ": {
-            color: theme.palette.primary.contrastText,
-          },
-        }}
-        variant="h6"
-      >
-        {title}
-      </Typography>
-      <SvgIcon
-        component={icon ? icon : React.Fragment}
-        sx={{
-          ml: "5px",
-          fontSize: "1.25rem",
-          color: theme.palette.primary.dark,
-        }}
-      />
-    </Link>
+              color: theme.palette.primary.dark,
+              textAlign: "center",
+            }}
+            variant="h6"
+          >
+            {title}
+          </Typography>
+          <SvgIcon
+            component={icon ? icon : React.Fragment}
+            sx={{
+              ml: "5px",
+              fontSize: "1.25rem",
+              color: theme.palette.primary.dark,
+            }}
+          />
+        </Link>
+      ) : (
+        <Link
+          underline="none"
+          sx={{
+            display: "inline-flex",
+            alignItems: "center",
+
+            flexDirection: "row",
+            "&:hover > *": {
+              color: theme.palette.primary.contrastText,
+              cursor: "pointer",
+            },
+            "&:hover ": {
+              color: theme.palette.primary.contrastText,
+              cursor: "pointer",
+            },
+          }}
+          href={reference}
+          onClick={(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+            e.stopPropagation();
+          }}
+        >
+          <SvgIcon
+            component={icon ? icon : React.Fragment}
+            sx={{
+              fontSize: "1.25rem",
+              color: theme.palette.primary.dark,
+            }}
+          />
+          <Typography
+            sx={{
+              ml: "5px",
+
+              color: theme.palette.primary.dark,
+            }}
+            variant="body1"
+          >
+            {title}
+          </Typography>
+        </Link>
+      )}
+    </>
   );
 };
 
