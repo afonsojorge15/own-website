@@ -47,7 +47,7 @@ const Work: NextPage = () => {
       my={"50px"}
       px={"20px"}
     >
-      <Box mb="6rem">
+      <Box mb="4rem">
         <Typography
           sx={{
             alignItems: "center",

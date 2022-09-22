@@ -95,7 +95,7 @@ const AccordionWithLink: React.FC<{
         expandIcon={
           <ExpandMoreRoundedIcon
             sx={{
-              color: (theme) => theme.palette.primary.dark,
+              color: theme.palette.primary.dark,
               borderRadius: "50%",
               borderStyle: "solid",
               borderWidth: "1px",

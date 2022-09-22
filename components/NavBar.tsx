@@ -23,8 +23,8 @@ export type LinkableItem = {
 
 const navBarItemList: LinkableItem[] = [
   { href: "/work", title: "Work", left: true },
-  { href: "/photography", title: "Photography" },
-  { href: "/films", title: "Films" },
+  //  { href: "/photography", title: "Photography" },
+  //  { href: "/films", title: "Films" },
   { href: "/contact", title: "Contact" },
 ];
 
