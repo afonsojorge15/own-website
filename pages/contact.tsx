@@ -18,7 +18,6 @@ import type { NextPage } from "next";
 import ShortcutRoundedIcon from "@mui/icons-material/ShortcutRounded";
 import Link from "next/link";
 
-import Calendly from "../components/Calendly";
 import CustomLink from "../components/CustomLink";
 import { ContactCustomLinkList } from "../src/data/contactData";
 
