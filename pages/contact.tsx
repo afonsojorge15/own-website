@@ -18,6 +18,9 @@ import type { NextPage } from "next";
 import ShortcutRoundedIcon from "@mui/icons-material/ShortcutRounded";
 import Link from "next/link";
 
+import CustomLink from "../components/CustomLink";
+import { ContactCustomLinkList } from "../src/data/contactData";
+
 const ContactLink = styled("a")(({ theme }) => ({
   textDecoration: "underline",
   cursor: "pointer",
@@ -58,12 +61,13 @@ const Home: NextPage = () => {
           px: "30px",
           py: "30px",
           mb: "70px",
+          minWidth: "245px",
           background: theme.palette.primary.light,
         }}
       >
         <Typography
           sx={{
-            color: (theme) => theme.palette.primary.dark,
+            color: theme.palette.primary.dark,
           }}
           variant="h3"
           fontWeight={"600"}
@@ -71,125 +75,73 @@ const Home: NextPage = () => {
           Contacts
         </Typography>
         <Box
-          sx={{
-            display: "flex",
-            width: "100%",
-            flexDirection: "column",
-            alignItems: "left",
-            justifyContent: "center",
-            overflow: "auto",
-          }}
+          display="flex"
+          flexWrap={"wrap"}
+          mt={"0.7rem"}
+          alignItems={"center"}
         >
-          <Stack
-            alignItems="center"
-            flexWrap={"wrap"}
-            direction={"row"}
-            textAlign={"left"}
-            display="flex"
-            mt={3}
+          <Box
             sx={{
-              "&:hover > *": {
-                color: theme.palette.primary.contrastText,
-                cursor: "pointer",
-              },
+              display: "block",
+              alignItems: "center",
+              overflow: "auto",
+              flexWrap: "wrap",
+            }}
+            textAlign={"left"}
+            mb={isSmall ? "1rem" : 0}
+            mr={"1rem"}
+          >
+            {ContactCustomLinkList.map((item) => (
+              <Box
+                display={"flex"}
+                mt="5px"
+                key={item.title}
+                sx={{
+                  "&:hover": {
+                    color: theme.palette.primary.contrastText,
+                  },
+                }}
+              >
+                <CustomLink
+                  title={item.title}
+                  reference={item.reference}
+                  icon={item.icon}
+                />
+              </Box>
+            ))}
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              rowGap: "1rem",
+              flexDirection: "column",
+              flex: 1,
+              textAlign: "center",
             }}
           >
-            <Link href={"https://www.linkedin.com/in/afonso-jorge-a27708240/"}>
-              <LinkedIn
-                sx={{
-                  color: theme.palette.primary.dark,
-                  mr: 1,
-                }}
-              />
-            </Link>
-            <Link href={"https://www.linkedin.com/in/afonso-jorge-a27708240/"}>
-              <Typography
-                sx={{
-                  color: (theme) => theme.palette.primary.dark,
-                }}
-                variant="body1"
-                fontWeight={"600"}
-              >
-                LinkedIn
-              </Typography>
-            </Link>
-          </Stack>
-          <Stack
-            justifyContent={"flex-around"}
-            alignItems="center"
-            flexWrap={"wrap"}
-            direction={"row"}
-            textAlign={"left"}
-            display="flex"
-            mt={1}
-            sx={{
-              "&:hover > *": {
-                color: theme.palette.primary.contrastText,
-                cursor: "pointer",
-              },
-            }}
-          >
-            <Link href={"https://github.com/afonsojorge15"}>
-              <GitHub
-                sx={{
-                  alignSelf: "bottom",
-                  color: theme.palette.primary.dark,
-                  mr: 1,
-                }}
-              />
-            </Link>
-            <Link href={"https://github.com/afonsojorge15"}>
-              <Typography
-                sx={{
-                  color: (theme) => theme.palette.primary.dark,
-                }}
-                variant="body1"
-                fontWeight={"600"}
-              >
-                GitHub
-              </Typography>
-            </Link>
-          </Stack>
-          <Stack
-            justifyContent={"flex-around"}
-            alignItems="center"
-            direction={"row"}
-            textAlign={"left"}
-            display="flex"
-            mt={1}
-            sx={{
-              "&:hover > *": {
-                color: theme.palette.primary.contrastText,
-                cursor: "pointer",
-              },
-            }}
-          >
-            <Link href={""}>
-              <Email
-                sx={{
-                  alignSelf: "bottom",
-                  color: theme.palette.primary.dark,
-                  mr: 1,
-                }}
-                onClick={() => copyEmail("afonso.matos.jorge@gmail.com")}
-              />
-            </Link>
-            <Link href={""}>
-              <Typography
-                sx={{
-                  color: (theme) => theme.palette.primary.dark,
-                  pb: "0px",
-                }}
-                onClick={() => copyEmail("afonso.matos.jorge@gmail.com")}
-                variant="body1"
-                fontWeight={"600"}
-              >
-                afonso.matos.jorge@gmail.com
-              </Typography>
-            </Link>
-          </Stack>
+            <Typography
+              sx={{
+                color: (theme) => theme.palette.text.primary,
+              }}
+              variant="body1"
+              fontWeight={400}
+            >
+              Or schedule a meeting:
+            </Typography>
+            <Chip
+              variant="outlined"
+              icon={<DoneIcon />}
+              label={"Book a time"}
+              clickable={true}
+              onClick={() =>
+                Router.push("https://calendly.com/afonso-matos-jorge")
+              }
+            />
+          </Box>
         </Box>
       </Paper>
+
       <Paper
         elevation={2}
         sx={{
@@ -212,7 +164,7 @@ const Home: NextPage = () => {
         >
           <Typography
             sx={{
-              color: (theme) => theme.palette.primary.dark,
+              color: theme.palette.primary.dark,
             }}
             variant="body1"
             fontWeight={"400"}
