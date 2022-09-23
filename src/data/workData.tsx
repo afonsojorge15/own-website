@@ -6,6 +6,7 @@ export type StepperData = {
   subtitle: string;
   description: string;
   small?: boolean;
+  w4m?: boolean;
 };
 
 export type AccordionData = {
@@ -46,6 +47,7 @@ const walk4MoneySteps: Array<StepperData> = [
     description: `As an interning junior programmer, I was tasked with the production of a prototype application, based on the company's business model, to assess its feasibility.  
       I developed a serverless React native app, using javascript, with an intense focus on usability and designing the application's overall flow.`,
     small: false,
+    w4m: true,
   },
   {
     label: "Full-time - Lead Software developer",
@@ -60,19 +62,19 @@ const walk4MoneySteps: Array<StepperData> = [
     subtitle: "",
     description: `The MVP consists of a full-stack mobile application built in React Native using Typescript, for iOS and Android. It's a step-tracking fitness app with high user-incentive and rich social features.
       UX is designed with accessibility and simplicity as core values, together with a colourful and intuitive UI. It utilizes NoSQL MongoDB Atlas for its database and Firebase for the backend and user authentication.   `,
-    small: true,
+    small: false,
   },
   {
     label: "Website",
     subtitle: "",
     description: `A static, responsive and interactive React website that showcases the different value propositions and business models of the company. It's built with NextJS using Typescript and utilizes Material-UI for increased composability in its components.`,
-    small: true,
+    small: false,
   },
   {
     label: "Pitch deck",
     subtitle: "",
     description: `Upon deployment of both the MVP and web app, I undertook most of the research associated with market size and validation, direct competitors and future projections, which later led to the creation of several pitch decks based on these analyses.`,
-    small: true,
+    small: false,
   },
 ];
 

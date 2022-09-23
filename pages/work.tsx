@@ -54,7 +54,7 @@ const Work: NextPage = () => {
 
             color: (theme) => theme.palette.primary.dark,
             textAlign: "center",
-            mb: "1.9rem",
+            mb: "1.75rem",
           }}
           variant="h2"
         >
@@ -76,7 +76,7 @@ const Work: NextPage = () => {
 
           color: (theme) => theme.palette.primary.dark,
           textAlign: "center",
-          mb: "1.9rem",
+          mb: "1.75rem",
         }}
         variant="h2"
       >
