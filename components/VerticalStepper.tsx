@@ -1,4 +1,12 @@
-import { Launch, PublicRounded } from "@mui/icons-material";
+import {
+  AddchartRounded,
+  AppsRounded,
+  CodeRounded,
+  Launch,
+  PublicRounded,
+  SettingsRounded,
+  WebRounded,
+} from "@mui/icons-material";
 import {
   Box,
   Chip,
@@ -33,6 +41,8 @@ import { StyledComponent } from "@emotion/styled";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import Router from "next/router";
 import { StepperData } from "../src/data/workData";
+import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
+import AddchartRoundedIcon from "@mui/icons-material/AddchartRounded";
 
 const ColorlibStepIconRoot = styled("div")<{
   ownerState: { active?: boolean };
@@ -53,15 +63,35 @@ const ColorlibStepIconRoot = styled("div")<{
   }),
 }));
 
-const ColorlibSmallStepIconRoot = styled(ColorlibStepIconRoot)({
+const ColorlibSmallStepIconRoot = styled("div")<{
+  ownerState: { active?: boolean };
+}>(({ theme, ownerState }) => ({
+  backgroundColor:
+    theme.palette.mode === "dark" ? theme.palette.grey[700] : "rgb(0,0,0,0.15)",
+  zIndex: 1,
+  color: "#fff",
+  display: "flex",
+  borderRadius: "50%",
+  justifyContent: "center",
+  alignItems: "center",
   width: 25,
   height: 25,
-});
+  ...(ownerState.active && {
+    backgroundColor: theme.palette.primary.contrastText,
+    boxShadow: "0 4px 10px 0 rgba(0,0,0,.25)",
+  }),
+}));
 
 function ColorlibStepIcon(props: StepIconProps) {
   const { active, className } = props;
 
-  const icons: { [index: string]: React.ReactElement } = {};
+  const icons: { [index: string]: React.ReactElement } = {
+    1: <CodeRounded />,
+    2: <SettingsRounded />,
+    3: <AppsRounded />,
+    4: <WebRounded />,
+    5: <AddchartRounded />,
+  };
 
   return (
     <>
@@ -75,13 +105,11 @@ function ColorlibStepIcon(props: StepIconProps) {
 function ColorlibSmallStepIcon(props: StepIconProps) {
   const { active, className } = props;
 
-  const icons: { [index: string]: React.ReactElement } = {};
-
   return (
     <>
       <ColorlibSmallStepIconRoot
         ownerState={{ active }}
-        className={"icon-thing"}
+        className={"icon-small"}
       />
     </>
   );
@@ -121,27 +149,24 @@ export const VerticalLinearStepper: React.FC<{ props: Array<StepperData> }> = ({
                   borderStyle: "solid",
                   borderColor: "transparent",
                   borderRadius: 2,
-
                   borderWidth: "0.5px",
                 },
                 "& .MuiStepLabel-label": {
                   transition: "0.3s",
                   fontSize: isSmall ? "0.875rem" : "1rem",
                 },
-
                 "& .icon-thing": {
                   transition: "0.2s",
                   marginLeft: "5px",
+                },
+                "& .icon-small": {
+                  transition: "0.2s",
+                  marginLeft: "12px",
                 },
                 "&:hover .MuiStepLabel-labelContainer": {
                   backgroundColor: theme.palette.background.default,
                   borderColor: "#bdbdbd",
                 },
-                ...(step.small && {
-                  "& .icon-thing": {
-                    marginLeft: "12px",
-                  },
-                }),
                 ...(activeStep === index && {
                   "&:hover .MuiStepLabel-labelContainer": {
                     backgroundColor: "transparent",
@@ -166,7 +191,13 @@ export const VerticalLinearStepper: React.FC<{ props: Array<StepperData> }> = ({
             >
               {step.label}
             </StepLabel>
-            <StepContent>
+            <StepContent
+              sx={{
+                borderImage: step.small
+                  ? "#bdbdbd"
+                  : "linear-gradient( 0deg, #143DA6 ,  #53FFAA 60% ) 0 100%",
+              }}
+            >
               <Typography mb="5px" variant="body2">
                 {step.description}
               </Typography>

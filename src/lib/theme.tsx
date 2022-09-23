@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import { ThemeOptions } from "@mui/system";
+import { alpha, ThemeOptions } from "@mui/system";
 import { Context } from "react";
 
 const defaultTheme = createTheme();
@@ -69,10 +69,22 @@ export const createCustomTheme = (params: { light: boolean }) => {
           root: {
             fontWeight: 500,
             borderWidth: "1px",
-            color: palette.text?.primary,
-            borderColor: palette.primary?.contrastText,
+            paddingLeft: "1px",
+            paddingRight: "1px",
+            color: palette.primary.contrastText,
+            backgroundColor: "transparent",
+            borderColor: palette.primary.contrastText!,
+            borderStyle: "solid",
             "& .MuiChip-icon": {
-              color: palette.text?.primary,
+              color: palette.primary.contrastText,
+            },
+            "&:hover .MuiChip-icon": {
+              color: palette.primary.contrastText!,
+            },
+            "&:hover": {
+              color: palette.primary.contrastText!,
+              borderColor: palette.primary.contrastText!,
+              backgroundColor: alpha(palette.primary.contrastText, 0.1),
             },
           },
         },
@@ -115,11 +127,9 @@ export const createCustomTheme = (params: { light: boolean }) => {
         styleOverrides: {
           root: {
             borderWidth: 2,
-            borderRadius: 10,
+            borderRadius: 0,
             marginLeft: "24px",
             borderLeftWidth: 2,
-            borderImage:
-              "linear-gradient( 0deg, #143DA6 ,  #53FFAA 60% ) 0 100%",
           },
         },
       },

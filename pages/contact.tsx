@@ -6,6 +6,7 @@ import {
   Box,
   Chip,
   Container,
+  Divider,
   ListItem,
   Paper,
   Stack,
@@ -20,6 +21,7 @@ import Link from "next/link";
 
 import CustomLink from "../components/CustomLink";
 import { ContactCustomLinkList } from "../src/data/contactData";
+import EventAvailableRoundedIcon from "@mui/icons-material/EventAvailableRounded";
 
 const ContactLink = styled("a")(({ theme }) => ({
   textDecoration: "underline",
@@ -65,37 +67,40 @@ const Home: NextPage = () => {
           background: theme.palette.primary.light,
         }}
       >
+        {" "}
         <Typography
           sx={{
-            color: theme.palette.primary.dark,
+            alignItems: "center",
+
+            color: (theme) => theme.palette.primary.dark,
+            textAlign: "center",
+            mb: "1.75rem",
           }}
-          variant="h3"
-          fontWeight={"600"}
+          variant="h2"
         >
           Contacts
         </Typography>
-        <Box
-          display="flex"
-          flexWrap={"wrap"}
-          mt={"0.7rem"}
-          alignItems={"center"}
-        >
+        <Box display="block" alignItems={"center"} flexDirection="column">
           <Box
             sx={{
-              display: "block",
-              alignItems: "center",
+              display: "flex",
+              flex: 1,
               overflow: "auto",
               flexWrap: "wrap",
+              columnGap: "0rem",
+              justifyContent: isSmall ? "left" : "center",
+              width: "100%",
             }}
             textAlign={"left"}
-            mb={isSmall ? "1rem" : 0}
-            mr={"1rem"}
+            mb={isSmall ? "1rem" : "1rem"}
           >
             {ContactCustomLinkList.map((item) => (
               <Box
                 display={"flex"}
-                mt="5px"
                 key={item.title}
+                paddingRight={isSmall ? "2rem" : "0rem"}
+                paddingLeft={isSmall ? "0" : "2rem"}
+                mb={"0.5rem"}
                 sx={{
                   "&:hover": {
                     color: theme.palette.primary.contrastText,
@@ -110,15 +115,30 @@ const Home: NextPage = () => {
               </Box>
             ))}
           </Box>
+          <Divider
+            variant="middle"
+            sx={{
+              borderWidth: "2px",
+              maxWidth: isSmall ? "90%" : "20%",
+              justifySelf: "center",
+              ml: "auto",
+              mr: "auto",
+            }}
+          >
+            {" "}
+            OR{" "}
+          </Divider>
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
+              justifyContent: "center",
+
               rowGap: "1rem",
-              flexDirection: "column",
-              flex: 1,
+              flexDirection: isSmall ? "column" : "row",
               textAlign: "center",
             }}
+            mt={isSmall ? "1rem" : "1rem"}
           >
             <Typography
               sx={{
@@ -126,12 +146,12 @@ const Home: NextPage = () => {
               }}
               variant="body1"
               fontWeight={400}
+              mr={isSmall ? "0rem" : "1rem"}
             >
-              Or schedule a meeting:
+              Schedule a meeting:
             </Typography>
             <Chip
-              variant="outlined"
-              icon={<DoneIcon />}
+              icon={<EventAvailableRoundedIcon fontSize="small" />}
               label={"Book a time"}
               clickable={true}
               onClick={() =>
