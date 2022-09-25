@@ -144,7 +144,7 @@ const Home: NextPage = ({}) => {
           </Typography>
           <Typography
             sx={{
-              color: (theme) => theme.palette.primary.contrastText,
+              color: (theme) => theme.palette.text.primary,
               /*fontSize: { sm: "3.5rem", md: "4.5rem" },
               [theme.breakpoints.only("sm")]: {
                 fontSize: "4rem",
@@ -242,7 +242,7 @@ const Home: NextPage = ({}) => {
         >
           <Typography
             sx={{
-              color: (theme) => theme.palette.primary.contrastText,
+              color: (theme) => theme.palette.text.primary,
               textAlign: "left",
               mb: 1,
             }}

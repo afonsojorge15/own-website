@@ -102,16 +102,9 @@ const CustomLink: React.FC<CustomLinkData> = ({
             e.stopPropagation();
           }}
         >
-          <SvgIcon
-            component={icon ? icon : React.Fragment}
-            sx={{
-              fontSize: "1.25rem",
-              color: theme.palette.primary.dark,
-            }}
-          />
           <Typography
             sx={{
-              ml: "5px",
+              mr: "5px",
 
               color: theme.palette.primary.dark,
             }}
@@ -119,6 +112,13 @@ const CustomLink: React.FC<CustomLinkData> = ({
           >
             {title}
           </Typography>
+          <SvgIcon
+            component={icon ? icon : React.Fragment}
+            sx={{
+              fontSize: "1.25rem",
+              color: theme.palette.primary.dark,
+            }}
+          />
         </Link>
       )}
     </>
