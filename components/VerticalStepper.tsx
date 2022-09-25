@@ -84,9 +84,16 @@ const ColorlibSmallStepIconRoot = styled("div")<{
 
 function ColorlibStepIcon(props: StepIconProps) {
   const { active, className } = props;
+  let theme = useTheme();
 
   const icons: { [index: string]: React.ReactElement } = {
-    1: <CodeRounded />,
+    1: (
+      <CodeRounded
+        sx={{
+          color: active ? alpha(theme.palette.primary.light, 0.9) : "inherit",
+        }}
+      />
+    ),
     2: <SettingsRounded />,
     3: <AppsRounded />,
     4: <WebRounded />,
@@ -164,18 +171,38 @@ export const VerticalLinearStepper: React.FC<{ props: Array<StepperData> }> = ({
                   marginLeft: "12px",
                 },
                 "&:hover .MuiStepLabel-labelContainer": {
-                  backgroundColor: theme.palette.background.default,
-                  borderColor: "#bdbdbd",
+                  backgroundColor:
+                    activeStep === index
+                      ? "transparent"
+                      : theme.palette.background.default,
+                  borderColor: activeStep === index ? "transparent" : "#bdbdbd",
                 },
-                ...(activeStep === index && {
+                /*...(activeStep === index && {
                   "&:hover .MuiStepLabel-labelContainer": {
                     backgroundColor: "transparent",
                   },
-                }),
+                }),*/
                 "&:hover .icon-thing": {
                   backgroundColor: theme.palette.background.default,
                   borderColor: "#bdbdbd",
-                  borderStyle: "solid",
+                  borderStyle: activeStep === index ? "none" : "solid",
+                  borderWidth: "0.5px",
+                },
+                "&:hover .icon-thing > *": {
+                  transition: "0.2s",
+
+                  color:
+                    activeStep === index
+                      ? theme.palette.primary.light
+                      : alpha(theme.palette.primary.dark, 0.25),
+                },
+                "&:hover .icon-small": {
+                  backgroundColor:
+                    activeStep === index
+                      ? theme.palette.primary.contrastText
+                      : theme.palette.background.default,
+                  borderColor: "#bdbdbd",
+                  borderStyle: activeStep === index ? "none" : "solid",
                   borderWidth: "0.5px",
                 },
               }}
