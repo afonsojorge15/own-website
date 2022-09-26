@@ -1,4 +1,4 @@
-import { LaunchRounded } from "@mui/icons-material";
+import { GitHub, LaunchRounded } from "@mui/icons-material";
 import { CustomLinkData } from "../../components/CustomLink";
 
 export type StepperData = {
@@ -20,30 +20,34 @@ const W4MCustomLinkProps: CustomLinkData = {
   title: "Walk4Money",
   reference: "https://walk4money.app",
   icon: LaunchRounded,
+  left: false,
 };
 
 const QuizzesTutorCustomLinkProps: CustomLinkData = {
   title: "QuizzesTutor",
-  reference: "https://quizzes-tutor.tecnico.ulisboa.pt",
-  icon: LaunchRounded,
+  reference: "https://github.com/afonsojorge15/QuizzesTutor",
+  icon: GitHub,
+  left: false,
 };
 
 const BicloinCustomLinkProps: CustomLinkData = {
   title: "Bicloin",
   reference: "https://github.com/afonsojorge15/DistributedSystems",
-  icon: LaunchRounded,
+  icon: GitHub,
+  left: false,
 };
 
 const DBCustomLinkProps: CustomLinkData = {
-  title: "PostgreSQL-DB",
+  title: "ODISSEIA",
   reference: "https://github.com/afonsojorge15/Postgres-Database",
-  icon: LaunchRounded,
+  icon: GitHub,
+  left: false,
 };
 
 const walk4MoneySteps: Array<StepperData> = [
   {
     label: "Internship - Junior Software developer",
-    subtitle: "July 2019 - September 2019",
+    subtitle: "June 2019 - September 2019",
     description: `As an interning junior programmer, I was tasked with the production of a prototype application, based on the company's business model, to assess its feasibility.  
       I developed a serverless React native app, using javascript, with an intense focus on usability and designing the application's overall flow.`,
     small: false,
@@ -82,7 +86,7 @@ const quizzesTutorSteps: Array<StepperData> = [
   {
     label: "Backend - Service implementation, Service and Web Service testing",
     subtitle: "",
-    description: `TDD approach for implementing new features for a web app, specifically the ability to create exams with custom-type questions and answers.
+    description: `TDD approach in the implementation of new features for a web app, specifically the ability to create exams with custom-type questions and answers.
     Java and XML used to implement the features in the backend. JMeter and Groovy were used in Service and Web Service testing.`,
     small: true,
   },
@@ -96,10 +100,10 @@ const quizzesTutorSteps: Array<StepperData> = [
 
 const dataBaseSteps: Array<StepperData> = [
   {
-    label: "Creation and deployment of database and respective UI",
+    label: "Database for clinical data and respective web app",
     subtitle: "",
-    description: `SQL Database built with PL/pgSQL. From modelling an entity-relationship model to the complete design and implementation of the database and its schemas.
-    Deployment of a basic web app, developed with Flask and HTML, that allowed the user to interact with the medical application.`,
+    description: `A SQL Database, built with PL/pgSQL, that manages health data from different health providers. From modelling an entity-relationship model to the complete design and implementation of the database and its schemas.
+    Deployment of a basic web app, developed with Flask and HTML, that allows the user to visualize the respective data and query the DB.`,
     small: true,
   },
 ];
@@ -108,7 +112,7 @@ const distributedSystemsSteps: Array<StepperData> = [
   {
     label: "Architecture design, development and integration testing",
     subtitle: "",
-    description: `A server-side application built with gRPC services using Java. It's a non-persistent bicycle renting platform with a rudimentary client-side app.
+    description: `A server-side application built using Java with gRPC framework for API. It's a non-persistent bicycle renting platform with a rudimentary client-side app.
     System architecture design with a heavy emphasis on fault tolerance and concurrency. Testing was done with Java and utilised ZK-Naming (Apache ZooKeeper Java library) for the name registry.`,
     small: true,
   },
@@ -143,6 +147,6 @@ export const ProjectData: Array<AccordionData> = [
 
     data: dataBaseSteps,
     index: "4",
-    subtitle: "PL/pgSQL database and UI web app",
+    subtitle: "Clinical data collection, management and storage platform ",
   },
 ];

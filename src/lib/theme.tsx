@@ -31,24 +31,25 @@ export const createCustomTheme = (params: { light: boolean }) => {
 
   return createTheme({
     typography: {
-      fontFamily: '"Roboto","OpenSans", "Helvetica", "Arial", "sans-serif"',
+      fontFamily:
+        '"Roboto", "Inter","OpenSans", "Helvetica", "Arial", "sans-serif"',
     },
     palette,
     components: {
       MuiTypography: {
         styleOverrides: {
           body1: {
-            fontFamily: "Open Sans",
+            fontFamily: "Inter",
           },
           body2: {
-            fontFamily: "Open Sans",
+            fontFamily: "Inter",
           },
         },
       },
       MuiMenu: {
         styleOverrides: {
           paper: {
-            fontFamily: "Roboto",
+            fontFamily: "Inter",
             fontWeight: 500,
           },
           list: {
@@ -59,7 +60,7 @@ export const createCustomTheme = (params: { light: boolean }) => {
       MuiMenuItem: {
         styleOverrides: {
           root: {
-            fontFamily: "Open Sans",
+            fontFamily: "Inter",
             fontWeight: 500,
           },
         },
