@@ -52,12 +52,12 @@ const ColorlibStepIconRoot = styled("div")(({ theme }) => ({
   borderWidth: "1px",
   borderStyle: "solid",
   [theme.breakpoints.down("sm")]: {
-    width: "11rem",
-    height: "11rem",
+    width: "10rem",
+    height: "10rem",
   },
   [theme.breakpoints.only("sm")]: {
-    width: "11.7rem",
-    height: "11.7rem",
+    width: "11rem",
+    height: "11rem",
   },
   width: "12rem",
   height: "12rem",
@@ -96,11 +96,12 @@ const Home: NextPage = ({}) => {
           display: "flex",
           flexWrap: "wrap",
           flexDirection: "row",
-          justifyContent: "center",
+          justifyContent: isMid ? "center" : "left",
           alignItems: "center",
           mb: isSmall ? "2em" : "4em",
           mt: isSmall ? "3em" : "3em",
           pt: "1rem",
+          minWidth: "245px",
         }}
       >
         <Box
@@ -111,8 +112,8 @@ const Home: NextPage = ({}) => {
             height: "inherit",
             flexDirection: "row",
             justifyContent: "center",
-            pr: isSmall ? 0 : 3,
-            mb: isSmall ? 5 : 2,
+            pr: isMid ? 0 : 3,
+            mb: isMid ? 5 : 2,
           }}
           alignItems={isSmall ? "center" : "left"}
         >
@@ -129,7 +130,7 @@ const Home: NextPage = ({}) => {
             pl: isSmall ? 0 : "1rem",
             overflow: "auto",
           }}
-          alignItems={isSmall ? "center" : "left"}
+          alignItems={isMid ? "center" : "left"}
           textAlign={isSmall ? "center" : "left"}
         >
           <Typography
@@ -155,7 +156,13 @@ const Home: NextPage = ({}) => {
           >
             Afonso Jorge
           </Typography>
-          <Box display={"flex"} flexDirection={"row"}>
+          <Box
+            display={"flex"}
+            flexDirection={"row"}
+            flexWrap="wrap"
+            mt={isSmall ? "0.5rem" : "0rem"}
+            justifyContent={isMid ? "center" : "left"}
+          >
             <Typography
               sx={{
                 color: (theme) => theme.palette.text.primary,
@@ -195,7 +202,7 @@ const Home: NextPage = ({}) => {
           </Box>
 
           <Stack
-            justifyContent={isSmall ? "center" : "left"}
+            justifyContent={isMid ? "center" : "left"}
             flexWrap="wrap"
             direction="row"
             display="flex"
@@ -247,7 +254,6 @@ const Home: NextPage = ({}) => {
               mb: 1,
             }}
             variant="h6"
-            fontWeight={"500"}
           >
             About this website:
           </Typography>
@@ -258,7 +264,7 @@ const Home: NextPage = ({}) => {
             variant="body1"
             fontWeight={"400"}
           >
-            A modern, responsive, statically-generated react application built
+            A modern, responsive, statically-generated React application built
             with NextJS using Typescript. Reusable UI interface built with
             Material-UI. Soon to implement GraphQL, Apollo and a REST API.
           </Typography>
@@ -275,7 +281,19 @@ const Home: NextPage = ({}) => {
           px: "30px",
           py: "30px",
           background: theme.palette.primary.light,
+          borderStyle: "solid",
+          borderColor: theme.palette.primary.contrastText,
+          borderWidth: "0.5px",
+          color: theme.palette.primary.contrastText,
+          "&:hover": {
+            transition: "0.3s",
+            borderStyle: "none",
+            color: theme.palette.primary.light,
+            background: theme.palette.primary.contrastText,
+            cursor: "pointer",
+          },
         }}
+        onClick={() => Router.push("/contact")}
       >
         <Box
           sx={{
@@ -285,10 +303,11 @@ const Home: NextPage = ({}) => {
           }}
         >
           <Typography
-            sx={{
-              color: (theme) => theme.palette.primary.dark,
-              animation: `${blink} 1s linear infinite`,
-            }}
+            sx={
+              {
+                //animation: `${blink} 1s linear infinite`,
+              }
+            }
             variant="body1"
             fontWeight={"400"}
           >

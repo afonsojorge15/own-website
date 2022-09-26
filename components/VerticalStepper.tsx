@@ -183,6 +183,8 @@ export const VerticalLinearStepper: React.FC<{ props: Array<StepperData> }> = ({
                   },
                 }),*/
                 "&:hover .icon-thing": {
+                  transition: "0.2s",
+
                   backgroundColor: theme.palette.background.default,
                   borderColor: "#bdbdbd",
                   borderStyle: activeStep === index ? "none" : "solid",
