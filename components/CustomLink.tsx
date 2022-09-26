@@ -28,7 +28,7 @@ export type CustomLinkData = {
     muiName: string;
   };
   sx?: SxProps<Theme> | undefined;
-  left: boolean;
+  left?: boolean;
 };
 
 const CustomLink: React.FC<CustomLinkData> = ({
