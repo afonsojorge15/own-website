@@ -111,6 +111,7 @@ const Home: NextPage = () => {
                   title={item.title}
                   reference={item.reference}
                   icon={item.icon}
+                  left={item.left}
                 />
               </Box>
             ))}

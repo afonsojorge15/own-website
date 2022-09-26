@@ -28,7 +28,7 @@ export type CustomLinkData = {
     muiName: string;
   };
   sx?: SxProps<Theme> | undefined;
-  left?: boolean;
+  left: boolean;
 };
 
 const CustomLink: React.FC<CustomLinkData> = ({
@@ -60,6 +60,15 @@ const CustomLink: React.FC<CustomLinkData> = ({
             e.stopPropagation();
           }}
         >
+          {" "}
+          <SvgIcon
+            component={icon ? icon : React.Fragment}
+            sx={{
+              mr: "5px",
+              fontSize: "1.25rem",
+              color: theme.palette.primary.dark,
+            }}
+          />
           <Typography
             sx={{
               alignItems: "center",
@@ -67,18 +76,10 @@ const CustomLink: React.FC<CustomLinkData> = ({
               color: theme.palette.primary.dark,
               textAlign: "center",
             }}
-            variant="h6"
+            variant="body1"
           >
             {title}
           </Typography>
-          <SvgIcon
-            component={icon ? icon : React.Fragment}
-            sx={{
-              ml: "5px",
-              fontSize: "1.25rem",
-              color: theme.palette.primary.dark,
-            }}
-          />
         </Link>
       ) : (
         <Link
